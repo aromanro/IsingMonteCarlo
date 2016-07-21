@@ -165,13 +165,13 @@ BEGIN
     END
     POPUP "&Help"
     BEGIN
-        MENUITEM "&About IsingMonteCarlo...",   ID_APP_ABOUT
+        MENUITEM "&About Ising Monte Carlo...", ID_APP_ABOUT
     END
 END
 
 IDR_HELP_MENU MENU
 BEGIN
-    MENUITEM "&About IsingMonteCarlo...",   ID_APP_ABOUT
+    MENUITEM "&About Ising Monte Carlo...", ID_APP_ABOUT
 END
 
 IDR_THEME_MENU MENU
@@ -204,7 +204,7 @@ END
 
 IDD_ABOUTBOX DIALOGEX 0, 0, 170, 62
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "About IsingMonteCarlo"
+CAPTION "About Ising Monte Carlo"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,14,14,20,20

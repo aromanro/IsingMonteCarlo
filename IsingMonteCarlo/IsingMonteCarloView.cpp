@@ -96,7 +96,9 @@ void CIsingMonteCarloView::OnDraw(CDC* pDC)
 
 		CString str;
 		str.Format(L"Temperature = %.2f", matrix.Temperature);
-
+		
+		rect.left += rect.Width() / 2 - 150;
+		rect.right = rect.left + 300;
 		pDC->ExtTextOut(rect.left + rect.Width() / 2, rect.top, ETO_CLIPPED | ETO_OPAQUE, rect, str, NULL);
 
 		pDC->SelectObject(oldFont);
