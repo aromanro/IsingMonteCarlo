@@ -287,8 +287,6 @@ SpinMatrix CIsingMonteCarloDoc::GetData()
 		GetView()->EndWaitCursor();
 
 		SetupCharts();
-		
-		GetView()->Invalidate();
 	}
 
 	std::lock_guard<std::mutex> lock(spinsSection);
