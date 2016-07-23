@@ -6,19 +6,23 @@
 #include "ChartsPropertyPage.h"
 #include "afxdialogex.h"
 
+#include "MainFrm.h"
+#include "IsingMonteCarloDoc.h"
+
 
 // CChartsPropertyPage dialog
 
 IMPLEMENT_DYNAMIC(CChartsPropertyPage, CPropertyPage)
 
 CChartsPropertyPage::CChartsPropertyPage()
-	: CPropertyPage(IDD_CHARTS_PROPPAGE)	
+	: CPropertyPage(IDD_CHARTS_PROPPAGE)		
 {
 	m_lineThickness = theApp.options.chartLineThickness;
 	m_specificHeatMax = theApp.options.maxSpecificHeat;
 	m_susceptibilityMax = theApp.options.maxSusceptibility;
 	m_specificHeatTicks = theApp.options.ticksSpecificHeat + 1;
 	m_susceptibilityTicks = theApp.options.ticksSusceptibility + 1;
+	m_useSplines = (theApp.options.useSplines ? 1 : 0);
 }
 
 CChartsPropertyPage::~CChartsPropertyPage()
@@ -39,6 +43,8 @@ void CChartsPropertyPage::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_EDIT4, m_specificHeatTicks);
 	DDX_Text(pDX, IDC_EDIT5, m_susceptibilityTicks);
 
+	DDX_Check(pDX, IDC_CHECK1, m_useSplines);
+
 	DDV_MinMaxUInt(pDX, m_lineThickness, 0, 9);
 	DDV_MinMaxUInt(pDX, m_specificHeatMax, 2, 100);
 	DDV_MinMaxUInt(pDX, m_susceptibilityMax, 50, 1000);
@@ -58,6 +64,7 @@ BEGIN_MESSAGE_MAP(CChartsPropertyPage, CPropertyPage)
 	ON_BN_CLICKED(IDC_MFCCOLORBUTTON2, &CChartsPropertyPage::OnBnClickedMfccolorbutton)
 	ON_BN_CLICKED(IDC_MFCCOLORBUTTON3, &CChartsPropertyPage::OnBnClickedMfccolorbutton)
 	ON_BN_CLICKED(IDC_MFCCOLORBUTTON4, &CChartsPropertyPage::OnBnClickedMfccolorbutton)
+	ON_BN_CLICKED(IDC_CHECK1, &CChartsPropertyPage::OnBnClickedCheck1)
 END_MESSAGE_MAP()
 
 
@@ -76,8 +83,13 @@ void CChartsPropertyPage::ApplyValues()
 	theApp.options.magnetizationColor = m_magnetizationColor.GetColor();
 	theApp.options.specificHeatColor = m_specificHeatColor.GetColor();
 	theApp.options.susceptibilityColor = m_susceptibilityColor.GetColor();
+
+	theApp.options.useSplines = (m_useSplines == 1 ? true : false);
 	
 	theApp.options.Save();
+
+	CIsingMonteCarloDoc* doc = ((CIsingMonteCarloDoc*)((CMainFrame*)theApp.m_pMainWnd)->GetActiveDocument());
+	if (doc) doc->SetChangeableChartsParams();
 }
 
 
@@ -126,3 +138,9 @@ void CChartsPropertyPage::OnBnClickedMfccolorbutton()
 }
 
 
+
+
+void CChartsPropertyPage::OnBnClickedCheck1()
+{
+	SetModified();
+}

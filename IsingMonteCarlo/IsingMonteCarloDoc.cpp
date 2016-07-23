@@ -446,13 +446,49 @@ void CIsingMonteCarloDoc::SetupCharts()
 	m_magnetizationChart.SetXLabels(xlabels);
 	m_energyChart.SetXLabels(xlabels);
 
+	SetChangeableChartsParams();
+}
 
-	m_specificHeatChart.YAxisMax = opt.maxSpecificHeat;
-	m_susceptibilityChart.YAxisMax = opt.maxSusceptibility;
+void CIsingMonteCarloDoc::SetChangeableChartsParams()
+{
+	m_specificHeatChart.YAxisMax = theApp.options.maxSpecificHeat;
+	m_susceptibilityChart.YAxisMax = theApp.options.maxSusceptibility;
 
-	m_specificHeatChart.SetNumBigTicksY(opt.ticksSpecificHeat);
-	m_specificHeatChart.SetNumTicksY(opt.ticksSpecificHeat * 2);
+	m_specificHeatChart.SetNumBigTicksY(theApp.options.ticksSpecificHeat);
+	m_specificHeatChart.SetNumTicksY(theApp.options.ticksSpecificHeat * 2);
 
-	m_susceptibilityChart.SetNumBigTicksY(opt.ticksSusceptibility);
-	m_susceptibilityChart.SetNumTicksY(opt.ticksSusceptibility * 2);
+	m_susceptibilityChart.SetNumBigTicksY(theApp.options.ticksSusceptibility);
+	m_susceptibilityChart.SetNumTicksY(theApp.options.ticksSusceptibility * 2);
+
+
+	m_energyChart.useSpline = theApp.options.useSplines;
+	m_magnetizationChart.useSpline = theApp.options.useSplines;
+	m_specificHeatChart.useSpline = theApp.options.useSplines;
+	m_susceptibilityChart.useSpline = theApp.options.useSplines;
+
+	for (auto &dataSet : m_energyChart.dataSets.dataSets)
+	{
+		dataSet.color = theApp.options.energyColor;
+		dataSet.lineWidth = (float)theApp.options.chartLineThickness;
+	}
+
+	for (auto &dataSet : m_magnetizationChart.dataSets.dataSets)
+	{
+		dataSet.color = theApp.options.magnetizationColor;
+		dataSet.lineWidth = (float)theApp.options.chartLineThickness;
+	}
+
+	for (auto &dataSet : m_specificHeatChart.dataSets.dataSets)
+	{
+		dataSet.color = theApp.options.specificHeatColor;
+		dataSet.lineWidth = (float)theApp.options.chartLineThickness;
+	}
+
+	for (auto &dataSet : m_susceptibilityChart.dataSets.dataSets)
+	{
+		dataSet.color = theApp.options.susceptibilityColor;
+		dataSet.lineWidth = (float)theApp.options.chartLineThickness;
+	}
+
+	if (finishedCalc && !displayingRenormalization) GetView()->Invalidate();
 }

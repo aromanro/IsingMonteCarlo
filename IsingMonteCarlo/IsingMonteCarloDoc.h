@@ -96,4 +96,5 @@ public:
 	SpinMatrix GetData();
 	CIsingMonteCarloView* GetView();
 	void SwitchDisplay();
+	void SetChangeableChartsParams();
 };

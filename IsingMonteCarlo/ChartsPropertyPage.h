@@ -25,7 +25,7 @@ protected:
 	void ApplyValues();
 	virtual BOOL OnApply();
 	virtual BOOL OnInitDialog();
-public:
+
 	afx_msg void OnEnChangeEdit();	
 	afx_msg void OnBnClickedMfccolorbutton();
 	CMFCColorButton m_energyColor;
@@ -37,4 +37,7 @@ public:
 	unsigned int m_susceptibilityMax;
 	unsigned int m_specificHeatTicks;
 	unsigned int m_susceptibilityTicks;
+	int m_useSplines;
+
+	afx_msg void OnBnClickedCheck1();
 };

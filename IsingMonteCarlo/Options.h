@@ -46,6 +46,8 @@ public:
 
 	unsigned int ticksSusceptibility, ticksSpecificHeat;
 
+	bool useSplines;
+
 
 	Options();
 	~Options();

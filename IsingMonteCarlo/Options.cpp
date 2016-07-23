@@ -19,7 +19,8 @@ Options::Options()
 	energyColor(RGB(255, 0, 0)), magnetizationColor(RGB(0, 0, 255)), specificHeatColor(RGB(0, 255, 0)), susceptibilityColor(RGB(0, 255, 255)),
 	maxSpecificHeat(4), maxSusceptibility(150),
 	ticksSpecificHeat(4),
-	ticksSusceptibility(3)
+	ticksSusceptibility(3),
+	useSplines(true)
 {
 }
 
@@ -56,6 +57,7 @@ void Options::Load()
 	maxSusceptibility = theApp.GetProfileInt(L"options", L"maxSusceptibility", 150);
 	ticksSpecificHeat = theApp.GetProfileInt(L"options", L"ticksSpecificHeat", 4);
 	ticksSusceptibility = theApp.GetProfileInt(L"options", L"ticksSusceptibility", 3);
+	useSplines = (theApp.GetProfileInt(L"options", L"useSplines", 1) ? true : false);
 }
 
 void Options::Save()
@@ -86,6 +88,7 @@ void Options::Save()
 	theApp.WriteProfileInt(L"options", L"maxSusceptibility", maxSusceptibility);
 	theApp.WriteProfileInt(L"options", L"ticksSpecificHeat", ticksSpecificHeat);
 	theApp.WriteProfileInt(L"options", L"ticksSusceptibility", ticksSusceptibility);
+	theApp.WriteProfileInt(L"options", L"useSplines", useSplines ? 1 : 0);
 }
 
 COLORREF Options::GetColor(LPCTSTR param, COLORREF defval)
