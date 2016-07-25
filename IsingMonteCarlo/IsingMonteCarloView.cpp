@@ -364,7 +364,7 @@ void CIsingMonteCarloView::DisplayRenormalizationForSpins(CDC* pDC, bool inc, CR
 			renorm->SetMatrix(dispSpinsRenorm, 64 * 2, 64 * 2, spinSize);
 			renormPixels = 64 * spinSize;
 
-			if (dispSpinsRenorm.GetRenormalizationsNumber() > theApp.options.MaxRenormalizations)
+			if (dispSpinsRenorm.GetRenormalizationsNumber() >= theApp.options.MaxRenormalizations)
 			{
 				dispSpinsRenorm = spinsRenorm;
 				renorm->SetMatrix(dispSpinsRenorm, 64 * 2, 64 * 2, spinSize);
