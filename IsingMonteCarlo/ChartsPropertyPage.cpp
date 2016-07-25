@@ -46,8 +46,8 @@ void CChartsPropertyPage::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_CHECK1, m_useSplines);
 
 	DDV_MinMaxUInt(pDX, m_lineThickness, 0, 9);
-	DDV_MinMaxUInt(pDX, m_specificHeatMax, 2, 100);
-	DDV_MinMaxUInt(pDX, m_susceptibilityMax, 50, 1000);
+	DDV_MinMaxUInt(pDX, m_specificHeatMax, 2, 1000);
+	DDV_MinMaxUInt(pDX, m_susceptibilityMax, 50, 10000);
 
 	DDV_MinMaxUInt(pDX, m_specificHeatTicks, 2, 10);
 	DDV_MinMaxUInt(pDX, m_susceptibilityTicks, 2, 10);

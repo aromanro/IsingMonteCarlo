@@ -10,7 +10,7 @@
 #include <strstream>
 
 MonteCarloThread::MonteCarloThread(unsigned int rows, unsigned int columns)
-	: spins(rows, columns), doc(nullptr), Terminate(false), opt(theApp.options), needsData(false)
+	: spins(rows, columns), doc(nullptr), Terminate(false), opt(theApp.options), needsData(false), setRenormalizationValues(0)
 {	
 	spins.Init(opt);
 }
@@ -135,24 +135,40 @@ bool MonteCarloThread::RunSweeps(unsigned int steps, bool collectStats)
 
 void MonteCarloThread::PassData()
 {
+	if (!doc) return;
+
 	// copy the value back to main thread
-	if (needsData && doc) {
+	if (needsData) {
 		needsData = false;
 
 		std::lock_guard<std::mutex> lock(doc->spinsSection);
 
-		doc->spins = spins;
-
-		if (opt.renormalizationTemperature1 == spins.Temperature)
-			doc->spinsRenorm1 = spins;
-		if (opt.renormalizationTemperature2 == spins.Temperature)
-			doc->spinsRenorm2 = spins;
-		if (opt.renormalizationTemperature3 == spins.Temperature)
-			doc->spinsRenorm3 = spins;
+		doc->spins = spins;		
 	}
 }
 
 void MonteCarloThread::PassStats(const Statistics& stats)
 {
 	statsList.push_back(stats);
+
+	if (!doc) return;
+
+	if (setRenormalizationValues > 0)
+	{
+		if (opt.renormalizationTemperature1 == spins.Temperature)
+		{
+			doc->spinsRenorm1 = spins;
+			--setRenormalizationValues;
+		}
+		if (opt.renormalizationTemperature2 == spins.Temperature)
+		{
+			doc->spinsRenorm2 = spins;
+			--setRenormalizationValues;
+		}
+		if (opt.renormalizationTemperature3 == spins.Temperature)
+		{
+			doc->spinsRenorm3 = spins;
+			--setRenormalizationValues;
+		}		
+	}
 }

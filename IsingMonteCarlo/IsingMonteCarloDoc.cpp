@@ -120,7 +120,10 @@ void CIsingMonteCarloDoc::LaunchThreads()
 		threadsList.back()->opt = opt; // better use the adjusted variant
 
 		if (0 == i)
+		{
 			threadsList.front()->needsData = true;
+			threadsList.front()->setRenormalizationValues = 3;
+		}
 
 		threadsList.back()->Start();
 	}

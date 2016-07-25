@@ -21,6 +21,8 @@ public:
 	
 	std::atomic_bool needsData;
 	std::atomic_bool Terminate;
+	
+	int setRenormalizationValues;
 
 	std::list<Statistics> statsList;
 
