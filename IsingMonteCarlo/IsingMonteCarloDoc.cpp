@@ -259,6 +259,7 @@ SpinMatrix CIsingMonteCarloDoc::GetData()
 			for (auto &iter : iterators)
 			{
 				if (first) {
+					// this is done to copy temperature and prevent the assertion fail in debug
 					stat = *iter;
 					first = false;
 				}
