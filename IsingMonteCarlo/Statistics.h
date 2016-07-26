@@ -19,5 +19,6 @@ public:
 
 	Statistics& operator+=(const Statistics& src);
 	Statistics& operator/=(double div);	
+	void CollectStats(double E, double M);
 };
 

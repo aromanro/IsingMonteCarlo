@@ -52,20 +52,20 @@ void MonteCarloThread::Calculate()
 
 	for (double temperature = startTemp; opt.startIsing == Options::IsingStart::ZeroTemperature ? temperature < endTemp : temperature > endTemp; temperature += tempStep)
 	{
-		if (!TemperatureStep(temperature)) return;
+		if (!TemperatureStep(temperature)) break;
 
 		// special case, calculate for renormalization temperature, too
 		if ((temperature < opt.renormalizationTemperature1 && opt.renormalizationTemperature1 < temperature + tempStep) || (temperature > opt.renormalizationTemperature1 && opt.renormalizationTemperature1 > temperature + tempStep))
 		{
-			if (!TemperatureStep(opt.renormalizationTemperature1)) return;
+			if (!TemperatureStep(opt.renormalizationTemperature1)) break;
 		}
 		if ((temperature < opt.renormalizationTemperature2 && opt.renormalizationTemperature2 < temperature + tempStep) || (temperature > opt.renormalizationTemperature2 && opt.renormalizationTemperature2 > temperature + tempStep))
 		{
-			if (!TemperatureStep(opt.renormalizationTemperature2)) return;
+			if (!TemperatureStep(opt.renormalizationTemperature2)) break;
 		}
 		if ((temperature < opt.renormalizationTemperature3 && opt.renormalizationTemperature3 < temperature + tempStep) || (temperature > opt.renormalizationTemperature3 && opt.renormalizationTemperature3 > temperature + tempStep))
 		{
-			if (!TemperatureStep(opt.renormalizationTemperature3)) return;
+			if (!TemperatureStep(opt.renormalizationTemperature3)) break;
 		}
 	}
 
@@ -81,17 +81,11 @@ bool MonteCarloThread::TemperatureStep(double temperature)
 
 	// equilibration
 	if (!RunSweeps(opt.equilibrationSteps))
-	{
-		if (doc) ++doc->threadsEnded;
 		return false;
-	}
 
 	// collect statistics
 	if (!RunSweeps(opt.collectionSteps, true))
-	{
-		if (doc) ++doc->threadsEnded;
 		return false;
-	}
 
 	return true;
 }
@@ -109,11 +103,7 @@ bool MonteCarloThread::RunSweeps(unsigned int steps, bool collectStats)
 			double E = spins.GetEnergy();
 			double M = spins.GetMagnetization();
 
-			stats.AvgE += E;
-			stats.AvgE2 += E * E;
-			stats.AvgM += M;
-			stats.AvgM2 += M * M;
-			stats.AvgAbsM += abs(M);
+			stats.CollectStats(E, M);		
 		}
 
 		if (Terminate) return false;

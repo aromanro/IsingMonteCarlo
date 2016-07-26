@@ -2,6 +2,7 @@
 #include "Statistics.h"
 
 #include <cassert>
+#include <algorithm>
 
 Statistics::Statistics()
 	: 
@@ -68,3 +69,13 @@ Statistics& Statistics::operator/=(double div)
 
 
 
+
+
+void Statistics::CollectStats(double E, double M)
+{
+	AvgE += E;
+	AvgE2 += E * E;
+	AvgM += M;
+	AvgM2 += M * M;
+	AvgAbsM += abs(M);
+}

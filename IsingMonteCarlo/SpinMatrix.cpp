@@ -127,7 +127,7 @@ void SpinMatrix::Init(const Options& options)
 	{
 	case Options::IsingStart::InfiniteTemperature:
 		{
-		    Temperature = 10;//*0.1*/2.26918531421/0.99;
+		    Temperature = 10;
 
 			std::uniform_int_distribution<> d{ 0, 1 };
 
