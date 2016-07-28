@@ -19,7 +19,7 @@ So, here are the classes in the order of importance (sort of):
 
 `SpinMatrix` - More or less similar with what I presented in the previous post, but with the addition of pre-calculating the exponential values and with renormalization code added. It can be initialized at 'zero' temperature or infinite temperature. It's just the spin matrix with periodic boundary conditions, containing the implementation of a Metropolis Monte Carlo sweep on the spins.
 
-`MonteCarloThread` - Has a `SpinMatrix` member called `spin`. In `Calculate` it runs a `TemperatureStep` for each temperature in the interval, starting with the lower one. Before this loop it runs a 'warmup' loop. The `TemperatureStep` just runs several sweeps for equilibration then several others for gathering statistics. The numbers are configurable, of course. One thread will pass the spin matrix to the main thread for displaying - in `PassData`, all threads will gather statistics in `PassStats`.
+`MonteCarloThread` - Has a `SpinMatrix` member called `spins`. In `Calculate` it runs a `TemperatureStep` for each temperature in the interval, starting with the lower one. Before this loop it runs a 'warmup' loop. The `TemperatureStep` just runs several sweeps for equilibration then several others for gathering statistics. The numbers are configurable, of course. One thread will pass the spin matrix to the main thread for displaying - in `PassData`, all threads will gather statistics in `PassStats`.
 
 `Statistics` - Contains the accumulated statistics and has some operators overloaded and a `CollectStats` method. The usage is pretty straightforward.
 
