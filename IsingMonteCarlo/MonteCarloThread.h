@@ -27,7 +27,7 @@ public:
 	std::list<Statistics> statsList;
 
 	MonteCarloThread(unsigned int rows = 32, unsigned int columns = 0);
-	~MonteCarloThread();
+	virtual ~MonteCarloThread();
 
 protected:
 	virtual void Calculate();
