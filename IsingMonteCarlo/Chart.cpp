@@ -510,8 +510,8 @@ void Chart::Draw(CDC* pDC, CRect& rect)
 	// draw X label
 	if (XAxisLabel.GetLength())
 	{
-		Gdiplus::RectF labelBound((float)rect.left, (float)(rect.top + rect.Height() + rect.Height()/8.), (float)rect.Width(), min((float)(min(rect.Width(),rect.Height()) / 12.), maxAxisLabelHeight));
-		DrawText(XAxisLabel, g, labelBound);
+		Gdiplus::RectF localLabelBound((float)rect.left, (float)(rect.top + rect.Height() + rect.Height()/8.), (float)rect.Width(), min((float)(min(rect.Width(),rect.Height()) / 12.), maxAxisLabelHeight));
+		DrawText(XAxisLabel, g, localLabelBound);
 	}
 
 	// draw Y label
@@ -519,8 +519,8 @@ void Chart::Draw(CDC* pDC, CRect& rect)
 	{
 		g.TranslateTransform((float)rect.left, (float)rect.bottom);
 		g.RotateTransform(-90.);
-		Gdiplus::RectF labelBound((float)(rect.Height() / 10.), -(float)leftSide , (float)rect.Height(), min((float)(min(rect.Width(), rect.Height()) / 12.), maxAxisLabelHeight));
-		DrawText(YAxisLabel, g, labelBound);
+		Gdiplus::RectF localLabelBound((float)(rect.Height() / 10.), -(float)leftSide , (float)rect.Height(), min((float)(min(rect.Width(), rect.Height()) / 12.), maxAxisLabelHeight));
+		DrawText(YAxisLabel, g, localLabelBound);
 	}
 
 	g.ResetTransform();
