@@ -98,7 +98,7 @@ void CIsingMonteCarloDoc::LaunchThreads()
 	if (opt.renormalizationTemperature2 < opt.lowTemperature || opt.renormalizationTemperature2 > opt.highTemperature) opt.renormalizationTemperature2 = (opt.lowTemperature + opt.highTemperature) / 2;
 	if (opt.renormalizationTemperature3 < opt.lowTemperature || opt.renormalizationTemperature2 > opt.highTemperature) opt.renormalizationTemperature3 = opt.highTemperature;
 
-	spins = SpinMatrix(opt.latticeSize);
+	spins = MonteCarlo::SpinMatrix(opt.latticeSize);
 	spins.Init(opt);
 
 	unsigned int numThreads = theApp.options.numThreads;
@@ -114,7 +114,7 @@ void CIsingMonteCarloDoc::LaunchThreads()
 
 	for (unsigned int i = 0; i < numThreads; ++i)
 	{
-		threadsList.push_back(std::make_unique<MonteCarloThread>(opt.latticeSize));
+		threadsList.push_back(std::make_unique<MonteCarlo::MonteCarloThread>(opt.latticeSize));
 
 		threadsList.back()->doc = this;
 		threadsList.back()->opt = opt; // better use the adjusted variant
@@ -232,14 +232,14 @@ void CIsingMonteCarloDoc::Dump(CDumpContext& dc) const
 // CIsingMonteCarloDoc commands
 
 
-SpinMatrix CIsingMonteCarloDoc::GetData()
+MonteCarlo::SpinMatrix CIsingMonteCarloDoc::GetData()
 {
 	if (threadsList.size()) threadsList.front()->needsData = true;
 
 	if (threadsEnded == opt.numThreads)
 	{				
 		// grab statistics
-		std::vector<std::list<Statistics>::iterator> iterators;
+		std::vector<std::list<MonteCarlo::Statistics>::iterator> iterators;
 		iterators.reserve(opt.numThreads);
 
 		int numStats = 0;
@@ -253,7 +253,7 @@ SpinMatrix CIsingMonteCarloDoc::GetData()
 		// now start to iterate and cumulate
 		for (int i = 0; i < numStats; ++i)
 		{
-			Statistics stat;
+			MonteCarlo::Statistics stat;
 
 			bool first = true;
 			for (auto &iter : iterators)
@@ -296,7 +296,7 @@ SpinMatrix CIsingMonteCarloDoc::GetData()
 	std::lock_guard<std::mutex> lock(spinsSection);
 
 
-	SpinMatrix mat{ spins };
+	MonteCarlo::SpinMatrix mat{ spins };
 
 	return mat;
 }

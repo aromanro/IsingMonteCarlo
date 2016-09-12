@@ -56,7 +56,7 @@ protected:
 	afx_msg void OnRButtonUp(UINT nFlags, CPoint point);
 	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
 
-	void DisplayRenormalizationForSpins(CDC* pDC, bool inc, CRect& rect, MemoryBitmap* renorm, SpinMatrix& spinsRenorm, SpinMatrix& dispSpinsRenorm, int& renormPixels);
+	void DisplayRenormalizationForSpins(CDC* pDC, bool inc, CRect& rect, MemoryBitmap* renorm, MonteCarlo::SpinMatrix& spinsRenorm, MonteCarlo::SpinMatrix& dispSpinsRenorm, int& renormPixels);
 
 
 	DECLARE_MESSAGE_MAP()

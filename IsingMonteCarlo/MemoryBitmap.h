@@ -1,6 +1,8 @@
 #pragma once
 
-class SpinMatrix;
+namespace MonteCarlo {
+	class SpinMatrix;
+}
 
 class MemoryBitmap
 {
@@ -44,7 +46,7 @@ public:
 	}
 
 
-	void SetMatrix(SpinMatrix& matrix, unsigned int spinsWidth, unsigned int spinsHeight, unsigned int spinSize);
+	void SetMatrix(MonteCarlo::SpinMatrix& matrix, unsigned int spinsWidth, unsigned int spinsHeight, unsigned int spinSize);
 
 	void Draw(CDC* pDC);
 	void Draw(CDC* pDC, CRect& rect, int origWidth = 0, int origHeight = 0);

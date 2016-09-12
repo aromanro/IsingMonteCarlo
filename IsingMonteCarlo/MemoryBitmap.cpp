@@ -34,7 +34,7 @@ void MemoryBitmap::SetSize(int width, int height)
 	}
 }
 
-void MemoryBitmap::SetMatrix(SpinMatrix& matrix, unsigned int spinsWidth, unsigned int spinsHeight, unsigned int spinSize)
+void MemoryBitmap::SetMatrix(MonteCarlo::SpinMatrix& matrix, unsigned int spinsWidth, unsigned int spinsHeight, unsigned int spinSize)
 {
 	SetSize(spinSize*spinsWidth, spinSize*spinsHeight);
 

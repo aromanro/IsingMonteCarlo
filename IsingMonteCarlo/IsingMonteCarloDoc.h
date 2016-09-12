@@ -27,21 +27,21 @@ protected: // create from serialization only
 public:
 	std::mutex spinsSection;
 
-	std::list<std::unique_ptr<MonteCarloThread>> threadsList;
+	std::list<std::unique_ptr<MonteCarlo::MonteCarloThread>> threadsList;
 	
 	std::atomic_int threadsEnded;
 
-	SpinMatrix spins;
+	MonteCarlo::SpinMatrix spins;
 
-	SpinMatrix spinsRenorm1;
-	SpinMatrix spinsRenorm2;
-	SpinMatrix spinsRenorm3;
+	MonteCarlo::SpinMatrix spinsRenorm1;
+	MonteCarlo::SpinMatrix spinsRenorm2;
+	MonteCarlo::SpinMatrix spinsRenorm3;
 
-	SpinMatrix dispSpinsRenorm1;
-	SpinMatrix dispSpinsRenorm2;
-	SpinMatrix dispSpinsRenorm3;
+	MonteCarlo::SpinMatrix dispSpinsRenorm1;
+	MonteCarlo::SpinMatrix dispSpinsRenorm2;
+	MonteCarlo::SpinMatrix dispSpinsRenorm3;
 
-	std::list<Statistics> statsList;
+	std::list<MonteCarlo::Statistics> statsList;
 
 	bool computing;
 	bool finishedCalc;
@@ -93,7 +93,7 @@ protected:
 	void SetupSpecificHeatChartData();
 	void SetupSusceptibilityChartData();
 public:
-	SpinMatrix GetData();
+	MonteCarlo::SpinMatrix GetData();
 	CIsingMonteCarloView* GetView();
 	void SwitchDisplay();
 	void SetChangeableChartsParams();

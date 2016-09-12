@@ -73,7 +73,7 @@ void CIsingMonteCarloView::OnDraw(CDC* pDC)
 	
 	if (pDoc->computing)
 	{
-		SpinMatrix matrix{ pDoc->GetData() };		
+		MonteCarlo::SpinMatrix matrix{ pDoc->GetData() };
 
 		//bitmap->SetSize(rect.Width() + spinSize, rect.Height() + spinSize);
 		
@@ -317,7 +317,7 @@ void CIsingMonteCarloView::DisplayRenormalization(CDC* pDC, bool inc)
 	DisplayRenormalizationForSpins(pDC, inc, rect3, renorm3, pDoc->spinsRenorm3, pDoc->dispSpinsRenorm3, renorm3Pixels);
 }
 
-void CIsingMonteCarloView::DisplayRenormalizationForSpins(CDC* pDC, bool inc, CRect& rect, MemoryBitmap* renorm, SpinMatrix& spinsRenorm, SpinMatrix& dispSpinsRenorm, int& renormPixels)
+void CIsingMonteCarloView::DisplayRenormalizationForSpins(CDC* pDC, bool inc, CRect& rect, MemoryBitmap* renorm, MonteCarlo::SpinMatrix& spinsRenorm, MonteCarlo::SpinMatrix& dispSpinsRenorm, int& renormPixels)
 {
 	renorm->Draw(pDC, rect, renormPixels, renormPixels);
 

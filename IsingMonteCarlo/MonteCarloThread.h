@@ -7,34 +7,38 @@
 #include <list>
 
 class CIsingMonteCarloDoc;
-class Statistics;
 
-class MonteCarloThread :
-	public ComputationThread
-{
-protected:
-	SpinMatrix spins;
-	
-public:
-	CIsingMonteCarloDoc *doc;
-	Options opt;
-	
-	std::atomic_bool needsData;
-	std::atomic_bool Terminate;
-	
-	int setRenormalizationValues;
+namespace MonteCarlo {
 
-	std::list<Statistics> statsList;
+	class Statistics;
 
-	MonteCarloThread(unsigned int rows = 32, unsigned int columns = 0);
-	virtual ~MonteCarloThread();
+	class MonteCarloThread :
+		public ComputationThread
+	{
+	protected:
+		SpinMatrix spins;
 
-protected:
-	virtual void Calculate();
-	void PassData();
-	void PassStats(const Statistics& stats);
+	public:
+		CIsingMonteCarloDoc *doc;
+		Options opt;
 
-	bool RunSweeps(unsigned int steps, bool collectStats = false);
-	bool TemperatureStep(double temperature);
-};
+		std::atomic_bool needsData;
+		std::atomic_bool Terminate;
 
+		int setRenormalizationValues;
+
+		std::list<Statistics> statsList;
+
+		MonteCarloThread(unsigned int rows = 32, unsigned int columns = 0);
+		virtual ~MonteCarloThread();
+
+	protected:
+		virtual void Calculate();
+		void PassData();
+		void PassStats(const Statistics& stats);
+
+		bool RunSweeps(unsigned int steps, bool collectStats = false);
+		bool TemperatureStep(double temperature);
+	};
+
+}
