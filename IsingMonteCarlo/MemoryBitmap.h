@@ -8,7 +8,13 @@ class MemoryBitmap
 {
 public:
 	MemoryBitmap();
-	~MemoryBitmap();
+
+	MemoryBitmap(const MemoryBitmap& other); // copy constructor
+	MemoryBitmap(MemoryBitmap&& other) noexcept; // move constructor
+	MemoryBitmap& operator=(const MemoryBitmap& other); //copy assignment operator
+	MemoryBitmap& operator=(MemoryBitmap&& other) noexcept; // move assignment operator
+
+	~MemoryBitmap() noexcept;
 protected:
 	int m_width;
 	int m_height;

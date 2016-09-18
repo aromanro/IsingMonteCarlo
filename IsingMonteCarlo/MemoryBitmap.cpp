@@ -13,7 +13,54 @@ MemoryBitmap::MemoryBitmap()
 }
 
 
-MemoryBitmap::~MemoryBitmap()
+MemoryBitmap::MemoryBitmap(const MemoryBitmap& other) // copy constructor
+{
+	if (other.data)
+	{
+		m_width = other.m_width;
+		m_height = other.m_height;
+		int size = GetStrideLength() * m_height;
+		data = new unsigned char[size];
+		memcpy(data, other.data, size);
+	}
+	else {
+		data = nullptr;
+		m_width = m_height = 0;
+	}
+}
+
+MemoryBitmap::MemoryBitmap(MemoryBitmap&& other) noexcept // move constructor
+	: data(other.data), m_width(other.m_width), m_height(other.m_height)
+{
+	other.data = nullptr;
+	other.m_height = other.m_width = 0;
+}
+
+MemoryBitmap& MemoryBitmap::operator=(const MemoryBitmap& other) //copy assignment operator
+{
+	MemoryBitmap temp(other);
+	
+	*this = std::move(temp);
+
+	return *this;
+}
+
+MemoryBitmap& MemoryBitmap::operator=(MemoryBitmap&& other) noexcept // move assignment operator
+{
+	delete[] data;
+	
+	m_width = other.m_width;
+	m_height = other.m_height;
+
+	data = other.data;
+
+	other.m_height = other.m_width = 0;
+	other.data = nullptr;
+
+	return *this;
+}
+
+MemoryBitmap::~MemoryBitmap() noexcept
 {
 	delete[] data;
 }
