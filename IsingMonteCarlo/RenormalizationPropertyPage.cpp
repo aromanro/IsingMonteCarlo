@@ -11,10 +11,10 @@
 
 // CRenormalizationPropertyPage dialog
 
-IMPLEMENT_DYNAMIC(CRenormalizationPropertyPage, CPropertyPage)
+IMPLEMENT_DYNAMIC(CRenormalizationPropertyPage, CMFCPropertyPage)
 
 CRenormalizationPropertyPage::CRenormalizationPropertyPage()
-	: CPropertyPage(IDD_RENORMALIZATION_PROPPAGE)	
+	: CMFCPropertyPage(IDD_RENORMALIZATION_PROPPAGE)	
 {
 	m_Temp1 = theApp.options.renormalizationTemperature1;
 	m_Temp2 = theApp.options.renormalizationTemperature2;
@@ -31,7 +31,7 @@ CRenormalizationPropertyPage::~CRenormalizationPropertyPage()
 
 void CRenormalizationPropertyPage::DoDataExchange(CDataExchange* pDX)
 {
-	CPropertyPage::DoDataExchange(pDX);
+	CMFCPropertyPage::DoDataExchange(pDX);
 
 	DDX_Control(pDX, IDC_EDIT1, m_Temp1Edit);
 	DDX_Control(pDX, IDC_EDIT2, m_Temp2Edit);
@@ -49,7 +49,7 @@ void CRenormalizationPropertyPage::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(CRenormalizationPropertyPage, CPropertyPage)
+BEGIN_MESSAGE_MAP(CRenormalizationPropertyPage, CMFCPropertyPage)
 	ON_EN_CHANGE(IDC_EDIT1, &CRenormalizationPropertyPage::OnEnChangeEdit)
 	ON_EN_CHANGE(IDC_EDIT2, &CRenormalizationPropertyPage::OnEnChangeEdit)
 	ON_EN_CHANGE(IDC_EDIT3, &CRenormalizationPropertyPage::OnEnChangeEdit)
@@ -86,13 +86,13 @@ BOOL CRenormalizationPropertyPage::OnApply()
 
 	ApplyValues();
 
-	return CPropertyPage::OnApply();
+	return CMFCPropertyPage::OnApply();
 }
 
 
 BOOL CRenormalizationPropertyPage::OnInitDialog()
 {
-	CPropertyPage::OnInitDialog();
+	CMFCPropertyPage::OnInitDialog();
 
 	// TODO:  Add extra initialization here
 	m_Temp1Edit.allowNegative = false;

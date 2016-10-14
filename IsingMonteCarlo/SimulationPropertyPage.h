@@ -5,7 +5,7 @@
 
 // CSimulationPropertyPage dialog
 
-class CSimulationPropertyPage : public CPropertyPage
+class CSimulationPropertyPage : public CMFCPropertyPage
 {
 	DECLARE_DYNAMIC(CSimulationPropertyPage)
 

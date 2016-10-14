@@ -4,7 +4,7 @@
 
 // CDisplayPropertyPage dialog
 
-class CDisplayPropertyPage : public CPropertyPage
+class CDisplayPropertyPage : public CMFCPropertyPage
 {
 	DECLARE_DYNAMIC(CDisplayPropertyPage)
 

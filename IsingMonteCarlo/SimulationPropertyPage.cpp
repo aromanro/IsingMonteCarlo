@@ -10,10 +10,10 @@
 
 // CSimulationPropertyPage dialog
 
-IMPLEMENT_DYNAMIC(CSimulationPropertyPage, CPropertyPage)
+IMPLEMENT_DYNAMIC(CSimulationPropertyPage, CMFCPropertyPage)
 
 CSimulationPropertyPage::CSimulationPropertyPage()
-	: CPropertyPage(IDD_SIMULATION_PROPPAGE)
+	: CMFCPropertyPage(IDD_SIMULATION_PROPPAGE)
 {
 	m_threadsNo = theApp.options.numThreads;
 	
@@ -32,7 +32,7 @@ CSimulationPropertyPage::~CSimulationPropertyPage()
 
 void CSimulationPropertyPage::DoDataExchange(CDataExchange* pDX)
 {
-	CPropertyPage::DoDataExchange(pDX);
+	CMFCPropertyPage::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_EDIT1, m_minTempEdit);
 	DDX_Control(pDX, IDC_EDIT2, m_maxTempEdit);
 	DDX_Control(pDX, IDC_EDIT3, m_stepTempEdit);
@@ -53,7 +53,7 @@ void CSimulationPropertyPage::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(CSimulationPropertyPage, CPropertyPage)
+BEGIN_MESSAGE_MAP(CSimulationPropertyPage, CMFCPropertyPage)
 	ON_EN_CHANGE(IDC_EDIT4, &CSimulationPropertyPage::OnEnChangeEdit)
 	ON_EN_CHANGE(IDC_EDIT1, &CSimulationPropertyPage::OnEnChangeEdit)
 	ON_EN_CHANGE(IDC_EDIT2, &CSimulationPropertyPage::OnEnChangeEdit)
@@ -88,7 +88,7 @@ void CSimulationPropertyPage::ApplyValues()
 
 BOOL CSimulationPropertyPage::OnInitDialog()
 {
-	CPropertyPage::OnInitDialog();
+	CMFCPropertyPage::OnInitDialog();
 
 	// TODO:  Add extra initialization here
 
@@ -107,7 +107,7 @@ BOOL CSimulationPropertyPage::OnApply()
 
 	ApplyValues();
 
-	return CPropertyPage::OnApply();
+	return CMFCPropertyPage::OnApply();
 }
 
 

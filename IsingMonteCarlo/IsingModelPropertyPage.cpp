@@ -10,10 +10,10 @@
 
 // CIsingModelPropertyPage dialog
 
-IMPLEMENT_DYNAMIC(CIsingModelPropertyPage, CPropertyPage)
+IMPLEMENT_DYNAMIC(CIsingModelPropertyPage, CMFCPropertyPage)
 
 CIsingModelPropertyPage::CIsingModelPropertyPage()
-	: CPropertyPage(IDD_ISING_PROPPAGE)
+	: CMFCPropertyPage(IDD_ISING_PROPPAGE)
 {
 	m_latticeSize = theApp.options.latticeSize;
 	m_B = theApp.options.B;
@@ -25,7 +25,7 @@ CIsingModelPropertyPage::~CIsingModelPropertyPage()
 
 void CIsingModelPropertyPage::DoDataExchange(CDataExchange* pDX)
 {
-	CPropertyPage::DoDataExchange(pDX);
+	CMFCPropertyPage::DoDataExchange(pDX);
 
 	DDX_Control(pDX, IDC_EDIT2, m_BEdit);
 
@@ -36,7 +36,7 @@ void CIsingModelPropertyPage::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(CIsingModelPropertyPage, CPropertyPage)
+BEGIN_MESSAGE_MAP(CIsingModelPropertyPage, CMFCPropertyPage)
 	ON_EN_CHANGE(IDC_EDIT1, &CIsingModelPropertyPage::OnEnChangeEdit)
 	ON_EN_CHANGE(IDC_EDIT2, &CIsingModelPropertyPage::OnEnChangeEdit)
 END_MESSAGE_MAP()
@@ -66,13 +66,13 @@ BOOL CIsingModelPropertyPage::OnApply()
 
 	ApplyValues();
 
-	return CPropertyPage::OnApply();
+	return CMFCPropertyPage::OnApply();
 }
 
 
 BOOL CIsingModelPropertyPage::OnInitDialog()
 {
-	CPropertyPage::OnInitDialog();
+	CMFCPropertyPage::OnInitDialog();
 
 	// TODO:  Add extra initialization here
 

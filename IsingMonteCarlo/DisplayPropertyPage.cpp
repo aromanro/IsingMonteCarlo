@@ -12,10 +12,10 @@
 
 // CDisplayPropertyPage dialog
 
-IMPLEMENT_DYNAMIC(CDisplayPropertyPage, CPropertyPage)
+IMPLEMENT_DYNAMIC(CDisplayPropertyPage, CMFCPropertyPage)
 
 CDisplayPropertyPage::CDisplayPropertyPage()
-	: CPropertyPage(IDD_DISPLAY_PROPPAGE)	
+	: CMFCPropertyPage(IDD_DISPLAY_PROPPAGE)	
 {
 	m_timerInterval = theApp.options.timerInterval;
 }
@@ -26,7 +26,7 @@ CDisplayPropertyPage::~CDisplayPropertyPage()
 
 void CDisplayPropertyPage::DoDataExchange(CDataExchange* pDX)
 {
-	CPropertyPage::DoDataExchange(pDX);
+	CMFCPropertyPage::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_MFCCOLORBUTTON1, m_SpinUpColorControl);
 	DDX_Control(pDX, IDC_MFCCOLORBUTTON2, m_SpinDownColorControl);
 
@@ -36,7 +36,7 @@ void CDisplayPropertyPage::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(CDisplayPropertyPage, CPropertyPage)
+BEGIN_MESSAGE_MAP(CDisplayPropertyPage, CMFCPropertyPage)
 	ON_BN_CLICKED(IDC_MFCCOLORBUTTON1, &CDisplayPropertyPage::OnBnClickedMfccolorbutton)
 	ON_BN_CLICKED(IDC_MFCCOLORBUTTON2, &CDisplayPropertyPage::OnBnClickedMfccolorbutton)
 	ON_EN_CHANGE(IDC_EDIT1, &CDisplayPropertyPage::OnEnChangeEdit1)
@@ -83,13 +83,13 @@ BOOL CDisplayPropertyPage::OnApply()
 
 	ApplyValues();
 
-	return CPropertyPage::OnApply();
+	return CMFCPropertyPage::OnApply();
 }
 
 
 BOOL CDisplayPropertyPage::OnInitDialog()
 {
-	CPropertyPage::OnInitDialog();
+	CMFCPropertyPage::OnInitDialog();
 
 	// TODO:  Add extra initialization here
 	m_SpinUpColorControl.EnableOtherButton(_T("More Colors..."));

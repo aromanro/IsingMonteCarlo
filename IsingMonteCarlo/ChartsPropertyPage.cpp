@@ -12,10 +12,10 @@
 
 // CChartsPropertyPage dialog
 
-IMPLEMENT_DYNAMIC(CChartsPropertyPage, CPropertyPage)
+IMPLEMENT_DYNAMIC(CChartsPropertyPage, CMFCPropertyPage)
 
 CChartsPropertyPage::CChartsPropertyPage()
-	: CPropertyPage(IDD_CHARTS_PROPPAGE)		
+	: CMFCPropertyPage(IDD_CHARTS_PROPPAGE)		
 {
 	m_lineThickness = theApp.options.chartLineThickness;
 	m_specificHeatMax = theApp.options.maxSpecificHeat;
@@ -31,7 +31,7 @@ CChartsPropertyPage::~CChartsPropertyPage()
 
 void CChartsPropertyPage::DoDataExchange(CDataExchange* pDX)
 {
-	CPropertyPage::DoDataExchange(pDX);
+	CMFCPropertyPage::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_MFCCOLORBUTTON1, m_energyColor);
 	DDX_Control(pDX, IDC_MFCCOLORBUTTON2, m_magnetizationColor);
 	DDX_Control(pDX, IDC_MFCCOLORBUTTON3, m_specificHeatColor);
@@ -54,7 +54,7 @@ void CChartsPropertyPage::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(CChartsPropertyPage, CPropertyPage)
+BEGIN_MESSAGE_MAP(CChartsPropertyPage, CMFCPropertyPage)
 	ON_EN_CHANGE(IDC_EDIT1, &CChartsPropertyPage::OnEnChangeEdit)
 	ON_EN_CHANGE(IDC_EDIT2, &CChartsPropertyPage::OnEnChangeEdit)
 	ON_EN_CHANGE(IDC_EDIT3, &CChartsPropertyPage::OnEnChangeEdit)
@@ -99,13 +99,13 @@ BOOL CChartsPropertyPage::OnApply()
 
 	ApplyValues();
 
-	return CPropertyPage::OnApply();
+	return CMFCPropertyPage::OnApply();
 }
 
 
 BOOL CChartsPropertyPage::OnInitDialog()
 {
-	CPropertyPage::OnInitDialog();
+	CMFCPropertyPage::OnInitDialog();
 
 	// TODO:  Add extra initialization here
 	m_energyColor.EnableOtherButton(_T("More Colors..."));

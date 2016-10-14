@@ -5,7 +5,7 @@
 
 // CIsingModelPropertyPage dialog
 
-class CIsingModelPropertyPage : public CPropertyPage
+class CIsingModelPropertyPage : public CMFCPropertyPage
 {
 	DECLARE_DYNAMIC(CIsingModelPropertyPage)
 

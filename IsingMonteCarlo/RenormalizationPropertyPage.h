@@ -5,7 +5,7 @@
 
 // CRenormalizationPropertyPage dialog
 
-class CRenormalizationPropertyPage : public CPropertyPage
+class CRenormalizationPropertyPage : public CMFCPropertyPage
 {
 	DECLARE_DYNAMIC(CRenormalizationPropertyPage)
 

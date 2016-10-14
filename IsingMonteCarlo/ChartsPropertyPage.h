@@ -4,7 +4,7 @@
 
 // CChartsPropertyPage dialog
 
-class CChartsPropertyPage : public CPropertyPage
+class CChartsPropertyPage : public CMFCPropertyPage
 {
 	DECLARE_DYNAMIC(CChartsPropertyPage)
 
