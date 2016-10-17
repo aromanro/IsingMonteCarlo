@@ -475,8 +475,8 @@ void Chart::Draw(CDC* pDC, CRect& rect)
 
 	// make room for title and labels
 	int leftSide = min(max(rect.Width() / 20, 70), 100);
-	int top = titleHeight * 2;
-	rect.DeflateRect(leftSide, top, rect.Width() / 20, rect.Height() / 5);
+	int top = max(titleHeight * 2, rect.Height() / 10);
+	rect.DeflateRect(leftSide, top, rect.Width() / 20, rect.Height() / 10);
 
 	chartRect = rect;
 
@@ -510,7 +510,7 @@ void Chart::Draw(CDC* pDC, CRect& rect)
 	// draw X label
 	if (XAxisLabel.GetLength())
 	{
-		Gdiplus::RectF localLabelBound((float)rect.left, (float)(rect.top + rect.Height() + rect.Height()/8.), (float)rect.Width(), min((float)(min(rect.Width(),rect.Height()) / 12.), maxAxisLabelHeight));
+		Gdiplus::RectF localLabelBound((float)rect.left, (float)(rect.top + rect.Height() + rect.Height()/12.), (float)rect.Width(), min((float)(min(rect.Width(),rect.Height()) / 12.), maxAxisLabelHeight));
 		DrawText(XAxisLabel, g, localLabelBound);
 	}
 
