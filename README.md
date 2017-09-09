@@ -3,6 +3,10 @@ A program implementing Metropolis Monte Carlo for the 2D square-lattice Ising mo
 
 A more detailed description can be found at http://compphys.go.ro/metropolis-for-2d-ising-and-spin-block-renormalization/
 
+### PROGRAM IN ACTION
+
+[![Program video](https://img.youtube.com/vi/gR8qr7IaS4I/0.jpg)](https://youtu.be/gR8qr7IaS4I)
+
 ### TOOLS
 
 The project compiles on Windows with Visual Studio 2015.
