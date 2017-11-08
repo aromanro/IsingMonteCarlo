@@ -1,7 +1,7 @@
 # IsingMonteCarlo
 A program implementing Metropolis Monte Carlo for the 2D square-lattice Ising model and the spin block renormalization.
 
-A more detailed description can be found at http://compphys.go.ro/metropolis-for-2d-ising-and-spin-block-renormalization/
+A more detailed description can be found at https://compphys.go.ro/metropolis-for-2d-ising-and-spin-block-renormalization/
 
 ### PROGRAM IN ACTION
 
