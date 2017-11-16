@@ -26,7 +26,7 @@ namespace MonteCarlo {
 	}
 
 	SpinMatrix::SpinMatrix(const SpinMatrix& s)
-		: m_rows(s.m_rows), m_cols(s.m_cols), Temperature(s.Temperature), Energy(s.Energy), J(s.J), B(s.B), m_spins(nullptr), expMap(nullptr), RenormalizationsNo(s.RenormalizationsNo)
+		: m_rows(s.m_rows), m_cols(s.m_cols), Temperature(s.Temperature), Energy(s.Energy), Magnetization(0), J(s.J), B(s.B), m_spins(nullptr), expMap(nullptr), RenormalizationsNo(s.RenormalizationsNo)
 	{
 		unsigned int size = m_rows * m_cols;
 
@@ -115,7 +115,7 @@ namespace MonteCarlo {
 
 	void SpinMatrix::Init(const Options& options)
 	{
-		unsigned int size = m_cols * m_rows;
+		const unsigned int size = m_cols * m_rows;
 
 		//Tc at 2.26918531421
 		J = options.J;
@@ -159,7 +159,7 @@ namespace MonteCarlo {
 
 	void SpinMatrix::MonteCarloSweep()
 	{
-		unsigned int size = m_rows * m_cols;
+		const unsigned int size = m_rows * m_cols;
 
 		std::uniform_int_distribution<unsigned int> rndRow{ 0, m_rows - 1 };
 		std::uniform_int_distribution<unsigned int> rndCol{ 0, m_cols - 1 };
@@ -168,10 +168,10 @@ namespace MonteCarlo {
 
 		for (unsigned int pos = 0; pos < size; ++pos)
 		{
-			unsigned int row = rndRow(rndEngine);
-			unsigned int col = rndCol(rndEngine);
+			const unsigned int row = rndRow(rndEngine);
+			const unsigned int col = rndCol(rndEngine);
 
-			double energyDif = EnergyDifForFlip(row, col);
+			const double energyDif = EnergyDifForFlip(row, col);
 			if (energyDif < 0)
 			{
 				// accept it
@@ -183,7 +183,7 @@ namespace MonteCarlo {
 			else
 			{
 				//double val = ExpMinusBetaE(energyDif);
-				double val = expMap[(unsigned int)energyDif];
+				const double val = expMap[static_cast<unsigned int>(energyDif)];
 
 				if (dbl_dist(rndEngine) < val)
 				{
@@ -203,7 +203,7 @@ namespace MonteCarlo {
 		delete[] expMap;
 		expMap = nullptr;
 
-		int size = (int)(9 + B);
+		const int size = static_cast<int>(9 + B);
 
 		if (size <= 0) return;
 
@@ -211,13 +211,13 @@ namespace MonteCarlo {
 
 		for (int i = 0; i < size; ++i) expMap[i] = 0;
 
-		int index = (int)(B);
+		int index = static_cast<int>(B);
 		if (index >= 0) expMap[index] = ExpMinusBetaE(B);
 
-		index = (int)(4 + B);
+		index = static_cast<int>(4 + B);
 		if (index >= 0) expMap[index] = ExpMinusBetaE(4 + B);
 
-		index = (int)(8 + B);
+		index = static_cast<int>(8 + B);
 		if (index >= 0) expMap[index] = ExpMinusBetaE(8 + B);
 	}
 

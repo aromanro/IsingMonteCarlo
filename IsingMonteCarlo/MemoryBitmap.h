@@ -31,14 +31,14 @@ public:
 	{
 		if (!data) return;
 
-		int stride = GetStrideLength();
+		const int stride = GetStrideLength();
 
-		int limX = 3 * min(Xpos + size, m_width);
-		int limY = min(Ypos + size, m_height);
+		const int limX = 3 * min(Xpos + size, m_width);
+		const int limY = min(Ypos + size, m_height);
 
 		for (int line = Ypos; line < limY; ++line)
 		{
-			int startLine = (m_height - line - 1) * stride;
+			const int startLine = (m_height - line - 1) * stride;
 
 			for (int horz = 3 * Xpos; horz < limX; horz += 3)
 			{
@@ -52,7 +52,7 @@ public:
 	}
 
 
-	void SetMatrix(MonteCarlo::SpinMatrix& matrix, unsigned int spinsWidth, unsigned int spinsHeight, unsigned int spinSize);
+	void SetMatrix(const MonteCarlo::SpinMatrix& matrix, unsigned int spinsWidth, unsigned int spinsHeight, unsigned int spinSize);
 
 	void Draw(CDC* pDC);
 	void Draw(CDC* pDC, CRect& rect, int origWidth = 0, int origHeight = 0);

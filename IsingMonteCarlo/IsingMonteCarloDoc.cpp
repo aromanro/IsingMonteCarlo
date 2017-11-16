@@ -243,9 +243,9 @@ MonteCarlo::SpinMatrix CIsingMonteCarloDoc::GetData()
 		iterators.reserve(opt.numThreads);
 
 		int numStats = 0;
-		for (auto &&thrd : threadsList) {
+		for (const auto &thrd : threadsList) {
 			iterators.push_back(thrd->statsList.begin());
-			if (!numStats) numStats = (int)thrd->statsList.size();
+			if (!numStats) numStats = static_cast<int>(thrd->statsList.size());
 		}
 
 		statsList.clear();
@@ -317,7 +317,7 @@ void CIsingMonteCarloDoc::SetupEnergyChartData()
 
 	m_energyChart.clear();
 
-	m_energyChart.AddDataSet(&data, (float)opt.chartLineThickness, opt.energyColor);
+	m_energyChart.AddDataSet(&data, static_cast<float>(opt.chartLineThickness), opt.energyColor);
 }
 
 
@@ -336,7 +336,7 @@ void CIsingMonteCarloDoc::SetupMagnetizationChartData()
 
 	m_magnetizationChart.clear();
 
-	m_magnetizationChart.AddDataSet(&data, (float)opt.chartLineThickness, opt.magnetizationColor);
+	m_magnetizationChart.AddDataSet(&data, static_cast<float>(opt.chartLineThickness), opt.magnetizationColor);
 }
 
 
@@ -355,7 +355,7 @@ void CIsingMonteCarloDoc::SetupSpecificHeatChartData()
 
 	m_specificHeatChart.clear();
 
-	m_specificHeatChart.AddDataSet(&data, (float)opt.chartLineThickness, opt.specificHeatColor);
+	m_specificHeatChart.AddDataSet(&data, static_cast<float>(opt.chartLineThickness), opt.specificHeatColor);
 }
 
 
@@ -374,7 +374,7 @@ void CIsingMonteCarloDoc::SetupSusceptibilityChartData()
 
 	m_susceptibilityChart.clear();
 
-	m_susceptibilityChart.AddDataSet(&data, (float)opt.chartLineThickness, opt.susceptibilityColor);
+	m_susceptibilityChart.AddDataSet(&data, static_cast<float>(opt.chartLineThickness), opt.susceptibilityColor);
 }
 
 CIsingMonteCarloView* CIsingMonteCarloDoc::GetView()
@@ -384,7 +384,7 @@ CIsingMonteCarloView* CIsingMonteCarloDoc::GetView()
 	{
 		CView* pView = GetNextView(pos);
 		if (pView->IsKindOf(RUNTIME_CLASS(CIsingMonteCarloView)))
-			return (CIsingMonteCarloView*)pView;
+			return dynamic_cast<CIsingMonteCarloView*>(pView);
 	}
 
 	return nullptr;
@@ -414,13 +414,13 @@ void CIsingMonteCarloDoc::SwitchDisplay()
 
 void CIsingMonteCarloDoc::SetupCharts()
 {
-	double lowLimit = floor(opt.lowTemperature);
-	double highLimit = ceil(opt.highTemperature);
+	const double lowLimit = floor(opt.lowTemperature);
+	const double highLimit = ceil(opt.highTemperature);
 
 	m_susceptibilityChart.XAxisMin = m_specificHeatChart.XAxisMin = m_magnetizationChart.XAxisMin = m_energyChart.XAxisMin = lowLimit;
 	m_susceptibilityChart.XAxisMax = m_specificHeatChart.XAxisMax = m_magnetizationChart.XAxisMax = m_energyChart.XAxisMax = highLimit;
 
-	int nrIntervals = (int)round(highLimit - lowLimit);
+	int nrIntervals = static_cast<int>(round(highLimit - lowLimit));
 
 	m_susceptibilityChart.SetNumBigTicksX(nrIntervals);
 	m_susceptibilityChart.SetNumTicksX(nrIntervals * 2);
@@ -436,7 +436,7 @@ void CIsingMonteCarloDoc::SetupCharts()
 
 	std::list<CString> xlabels;
 
-	for (int l = (int)lowLimit; l <= highLimit; ++l)
+	for (int l = static_cast<int>(lowLimit); l <= highLimit; ++l)
 	{
 		CString label;
 		label.Format(L"%d", l);
@@ -471,25 +471,25 @@ void CIsingMonteCarloDoc::SetChangeableChartsParams()
 	for (auto &dataSet : m_energyChart.dataSets.dataSets)
 	{
 		dataSet.color = theApp.options.energyColor;
-		dataSet.lineWidth = (float)theApp.options.chartLineThickness;
+		dataSet.lineWidth = static_cast<float>(theApp.options.chartLineThickness);
 	}
 
 	for (auto &dataSet : m_magnetizationChart.dataSets.dataSets)
 	{
 		dataSet.color = theApp.options.magnetizationColor;
-		dataSet.lineWidth = (float)theApp.options.chartLineThickness;
+		dataSet.lineWidth = static_cast<float>(theApp.options.chartLineThickness);
 	}
 
 	for (auto &dataSet : m_specificHeatChart.dataSets.dataSets)
 	{
 		dataSet.color = theApp.options.specificHeatColor;
-		dataSet.lineWidth = (float)theApp.options.chartLineThickness;
+		dataSet.lineWidth = static_cast<float>(theApp.options.chartLineThickness);
 	}
 
 	for (auto &dataSet : m_susceptibilityChart.dataSets.dataSets)
 	{
 		dataSet.color = theApp.options.susceptibilityColor;
-		dataSet.lineWidth = (float)theApp.options.chartLineThickness;
+		dataSet.lineWidth = static_cast<float>(theApp.options.chartLineThickness);
 	}
 
 	if (finishedCalc && !displayingRenormalization) GetView()->Invalidate();

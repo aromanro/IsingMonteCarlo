@@ -88,7 +88,7 @@ void CChartsPropertyPage::ApplyValues()
 	
 	theApp.options.Save();
 
-	CIsingMonteCarloDoc* doc = ((CIsingMonteCarloDoc*)((CMainFrame*)theApp.m_pMainWnd)->GetActiveDocument());
+	CIsingMonteCarloDoc* doc = dynamic_cast<CIsingMonteCarloDoc*>(dynamic_cast<CMainFrame*>(theApp.m_pMainWnd)->GetActiveDocument());
 	if (doc) doc->SetChangeableChartsParams();
 }
 

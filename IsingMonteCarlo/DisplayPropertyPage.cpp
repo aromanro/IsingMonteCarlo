@@ -58,13 +58,13 @@ void CDisplayPropertyPage::ApplyValues()
 	POSITION posDocTemplate = theApp.GetFirstDocTemplatePosition();
 	while (posDocTemplate)
 	{
-		CDocTemplate* pDocTemplate = theApp.GetNextDocTemplate(posDocTemplate);
+		const CDocTemplate* pDocTemplate = theApp.GetNextDocTemplate(posDocTemplate);
 
 		// get each document open in given document template
 		POSITION posDoc = pDocTemplate->GetFirstDocPosition();
 		while (posDoc)
 		{
-			CIsingMonteCarloDoc* pDoc = (CIsingMonteCarloDoc*)pDocTemplate->GetNextDoc(posDoc);
+			CIsingMonteCarloDoc* pDoc = dynamic_cast<CIsingMonteCarloDoc*>(pDocTemplate->GetNextDoc(posDoc));
 
 			if (pDoc)
 			{

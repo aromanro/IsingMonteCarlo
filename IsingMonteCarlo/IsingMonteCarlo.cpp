@@ -98,8 +98,7 @@ BOOL CIsingMonteCarloApp::InitInstance()
 
 	// Register the application's document templates.  Document templates
 	//  serve as the connection between documents, frame windows and views
-	CSingleDocTemplate* pDocTemplate;
-	pDocTemplate = new CSingleDocTemplate(
+	CSingleDocTemplate* pDocTemplate = new CSingleDocTemplate(
 		IDR_MAINFRAME,
 		RUNTIME_CLASS(CIsingMonteCarloDoc),
 		RUNTIME_CLASS(CMainFrame),       // main SDI frame window

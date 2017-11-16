@@ -81,17 +81,17 @@ void MemoryBitmap::SetSize(int width, int height)
 	}
 }
 
-void MemoryBitmap::SetMatrix(MonteCarlo::SpinMatrix& matrix, unsigned int spinsWidth, unsigned int spinsHeight, unsigned int spinSize)
+void MemoryBitmap::SetMatrix(const MonteCarlo::SpinMatrix& matrix, unsigned int spinsWidth, unsigned int spinsHeight, unsigned int spinSize)
 {
 	SetSize(spinSize*spinsWidth, spinSize*spinsHeight);
 
-	int widthZeroOrig = (spinsWidth - (int)matrix.getCols()) / 2;
-	int heightZeroOrig = (spinsHeight - (int)matrix.getRows()) / 2;
+	const int widthZeroOrig = (spinsWidth - static_cast<int>(matrix.getCols())) / 2;
+	const int heightZeroOrig = (spinsHeight - static_cast<int>(matrix.getRows())) / 2;
 
 	for (unsigned int i = 0; i < spinsHeight; ++i)
 		for (unsigned int j = 0; j < spinsWidth; ++j)
 		{
-			int spin = matrix.GetSpinPeriodic(i - heightZeroOrig, j - widthZeroOrig);
+			const int spin = matrix.GetSpinPeriodic(i - heightZeroOrig, j - widthZeroOrig);
 
 			FillSquare(j * spinSize, i * spinSize, spinSize, spin > 0 ? theApp.options.spinUpColor : theApp.options.spinDownColor);
 		}

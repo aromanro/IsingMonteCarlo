@@ -77,8 +77,8 @@ void CIsingMonteCarloView::OnDraw(CDC* pDC)
 
 		//bitmap->SetSize(rect.Width() + spinSize, rect.Height() + spinSize);
 		
-		int spinsWidth = (int)ceill(((double)rect.Width()) / spinSize);
-		int spinsHeight = (int)ceill(((double)rect.Height()) / spinSize);
+		int spinsWidth = static_cast<int>(ceill(static_cast<double>(rect.Width()) / spinSize));
+		int spinsHeight = static_cast<int>(ceill(static_cast<double>(rect.Height()) / spinSize));
 
 		bitmap->SetMatrix(matrix, spinsWidth, spinsHeight, spinSize);
 
@@ -198,7 +198,7 @@ void CIsingMonteCarloView::Dump(CDumpContext& dc) const
 CIsingMonteCarloDoc* CIsingMonteCarloView::GetDocument() const // non-debug version is inline
 {
 	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CIsingMonteCarloDoc)));
-	return (CIsingMonteCarloDoc*)m_pDocument;
+	return dynamic_cast<CIsingMonteCarloDoc*>(m_pDocument);
 }
 #endif //_DEBUG
 
@@ -218,7 +218,7 @@ BOOL CIsingMonteCarloView::OnEraseBkgnd(CDC* pDC)
 void CIsingMonteCarloView::OnTimer(UINT_PTR nIDEvent)
 {
 	// TODO: Add your message handler code here and/or call default
-	CIsingMonteCarloDoc* pDoc = GetDocument();
+	const CIsingMonteCarloDoc* pDoc = GetDocument();
 	
 	if (pDoc->displayingRenormalization) DisplayRenormalization(GetDC(), true);
 	else Invalidate();
@@ -250,7 +250,7 @@ void CIsingMonteCarloView::StartTimer()
 {
 	if (!timer) timer = SetTimer(1, theApp.options.timerInterval, NULL);
 
-	CIsingMonteCarloDoc* pDoc = GetDocument();
+	const CIsingMonteCarloDoc* pDoc = GetDocument();
 	if (pDoc && pDoc->computing) BeginWaitCursor();
 }
 
@@ -344,7 +344,7 @@ void CIsingMonteCarloView::DisplayRenormalizationForSpins(CDC* pDC, bool inc, CR
 	textRect.top = rect.bottom + 4;
 	textRect.bottom = textRect.top + 16;
 
-	str.Format(L"L = %d", (int)(renormPixels / spinSize * pow(2, dispSpinsRenorm.GetRenormalizationsNumber())));
+	str.Format(L"L = %d", static_cast<int>(renormPixels / spinSize * pow(2, dispSpinsRenorm.GetRenormalizationsNumber())));
 	pDC->ExtTextOut(textRect.left + textRect.Width() / 2, textRect.top, ETO_CLIPPED | ETO_OPAQUE, textRect, str, NULL);
 
 	pDC->SelectObject(oldFont);
@@ -376,7 +376,7 @@ void CIsingMonteCarloView::DisplayRenormalizationForSpins(CDC* pDC, bool inc, CR
 
 BOOL CIsingMonteCarloView::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message)
 {
-	CIsingMonteCarloDoc* pDoc = GetDocument();
+	const CIsingMonteCarloDoc* pDoc = GetDocument();
 
 	if (pDoc && pDoc->computing)
 	{
