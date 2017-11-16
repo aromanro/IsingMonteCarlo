@@ -483,16 +483,16 @@ void Chart::Draw(const CDC* pDC, CRect& rect)
 	// try to find out the labels font size
 	Gdiplus::RectF labelBound(0,0,GetLabelWidth(true),GetLabelHeight(true));
 
-	float fontSize = (float)maxLabelHeight;
+	float fontSize = static_cast<float>(maxLabelHeight);
 	std::list<CString> labels = X.GetLabels();
 	for (auto label : labels)
-		fontSize = min(fontSize, (float)GetNeededFontSize(label, g, labelBound));
+		fontSize = min(fontSize, static_cast<float>(GetNeededFontSize(label, g, labelBound)));
 	
 	labelBound.Width = GetLabelWidth(false);
 	labelBound.Height = GetLabelHeight(false);
 	labels = Y.GetLabels();
 	for (auto label : labels)
-		fontSize = min(fontSize, (float)GetNeededFontSize(label, g, labelBound));
+		fontSize = min(fontSize, static_cast<float>(GetNeededFontSize(label, g, labelBound)));
 
 
 	// draw horizontal axis
