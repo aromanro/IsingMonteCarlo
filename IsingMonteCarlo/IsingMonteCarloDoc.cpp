@@ -114,7 +114,7 @@ void CIsingMonteCarloDoc::LaunchThreads()
 
 	for (unsigned int i = 0; i < numThreads; ++i)
 	{
-		threadsList.push_back(std::make_unique<MonteCarlo::MonteCarloThread>(opt.latticeSize));
+		threadsList.emplace_back(std::make_unique<MonteCarlo::MonteCarloThread>(opt.latticeSize));
 
 		threadsList.back()->doc = this;
 		threadsList.back()->opt = opt; // better use the adjusted variant
