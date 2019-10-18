@@ -3,16 +3,16 @@
 class Options
 {
 public:
-	typedef enum IsingStart {
+	enum class IsingStart {
 		ZeroTemperature,
 		InfiniteTemperature
-	} IsingStart;
+	};
 
 
-	typedef enum BlockRenormalizationType {
+	enum class BlockRenormalizationType{
 		Majority,
 		Decimation
-	} BlockRenormalizationType;
+	};
 
 	IsingStart startIsing;
 	BlockRenormalizationType renormalizationType;

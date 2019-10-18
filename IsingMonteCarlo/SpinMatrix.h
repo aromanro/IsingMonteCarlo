@@ -69,20 +69,20 @@ namespace MonteCarlo {
 		}
 
 		inline double PartSiteEnergy(int row, int col) const {
-			return -GetSpin(row, col) * (J * (neighbor(row + 1, col) + neighbor(row, col + 1)) + B);
+			return -GetSpin(row, col) * (J * (static_cast<double>(neighbor(1ULL + row, col)) + neighbor(row, 1ULL + col)) + B);
 		}
 
 	public:
 		double Temperature;
 
 
-		SpinMatrix(unsigned int rows, unsigned int columns = 0);
+		SpinMatrix(unsigned int rows, unsigned int columns = 0) noexcept;
 		~SpinMatrix();
 
 		SpinMatrix(const SpinMatrix& s);
-		SpinMatrix(SpinMatrix&& s);
+		SpinMatrix(SpinMatrix&& s) noexcept;
 		SpinMatrix& operator=(const SpinMatrix& s);
-		SpinMatrix& operator=(SpinMatrix&& s);
+		SpinMatrix& operator=(SpinMatrix&& s) noexcept;
 
 		inline unsigned int getCols() const { return m_cols; }
 		inline unsigned int getRows() const { return m_rows; }

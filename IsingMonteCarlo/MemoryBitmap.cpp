@@ -77,7 +77,7 @@ void MemoryBitmap::SetSize(int width, int height)
 		m_width = width;
 		m_height = height;
 
-		data = new unsigned char[GetStrideLength() * height];
+		data = new unsigned char[static_cast<size_t>(GetStrideLength()) * height];
 	}
 }
 

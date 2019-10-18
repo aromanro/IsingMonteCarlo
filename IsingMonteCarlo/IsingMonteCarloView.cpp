@@ -39,7 +39,7 @@ END_MESSAGE_MAP()
 // CIsingMonteCarloView construction/destruction
 
 CIsingMonteCarloView::CIsingMonteCarloView()
-	: timer(0), bitmap(new MemoryBitmap()), renorm1(nullptr), renorm2(nullptr), renorm3(nullptr)
+	: timer(0), bitmap(new MemoryBitmap()), renorm1(nullptr), renorm2(nullptr), renorm3(nullptr), renorm1Pixels(0), renorm2Pixels(0), renorm3Pixels(0)
 {	
 }
 

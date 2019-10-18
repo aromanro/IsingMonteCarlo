@@ -5,12 +5,12 @@
 
 
 Options::Options()
-	: J(1.), B(0), startIsing(ZeroTemperature),
+	: J(1.), B(0), startIsing(IsingStart::ZeroTemperature),
 	warmupSteps(100), equilibrationSteps(100), collectionSteps(300),
 	temperatureStep(0.05), lowTemperature(1), highTemperature(5),
 	numThreads(4), renormalizationTemperature2(2.4), renormalizationTemperature1(2.25), renormalizationTemperature3(2.7),
 	latticeSize(256),
-	renormalizationType(Majority),
+	renormalizationType(BlockRenormalizationType::Majority),
 	MaxRenormalizations(4),
 	timerInterval(100),
 	spinUpColor(RGB(0, 0, 255)),
@@ -43,7 +43,7 @@ void Options::Load()
 	renormalizationTemperature2 = GetDouble(L"renormalizationTemperature2", 2.38);
 	renormalizationTemperature3 = GetDouble(L"renormalizationTemperature3", 2.7);
 	latticeSize = theApp.GetProfileInt(L"options", L"latticeSize", 256);
-	renormalizationType = (BlockRenormalizationType)theApp.GetProfileInt(L"options", L"renormalizationType", (int)Majority);
+	renormalizationType = (BlockRenormalizationType)theApp.GetProfileInt(L"options", L"renormalizationType", (int)BlockRenormalizationType::Majority);
 	MaxRenormalizations = theApp.GetProfileInt(L"options", L"maxRenormalizations", 4);
 	timerInterval = theApp.GetProfileInt(L"options", L"timerInterval", 100);
 	spinUpColor = GetColor(L"spinUpColor", RGB(0, 0, 255));

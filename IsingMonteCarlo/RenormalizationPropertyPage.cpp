@@ -22,7 +22,7 @@ CRenormalizationPropertyPage::CRenormalizationPropertyPage()
 
 	m_maxRenormalizationSteps = theApp.options.MaxRenormalizations;
 
-	m_renormType = theApp.options.renormalizationType;
+	m_renormType = (int)theApp.options.renormalizationType;
 }
 
 CRenormalizationPropertyPage::~CRenormalizationPropertyPage()

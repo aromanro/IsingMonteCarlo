@@ -31,7 +31,7 @@ END_MESSAGE_MAP()
 // CIsingMonteCarloApp construction
 
 CIsingMonteCarloApp::CIsingMonteCarloApp()
-	: gdiplusToken(0)
+	: gdiplusToken(0), m_nAppLook(0)
 {
 	m_bHiColorIcons = TRUE;
 

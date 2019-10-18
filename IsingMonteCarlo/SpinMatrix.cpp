@@ -7,7 +7,7 @@
 namespace MonteCarlo {
 
 
-	SpinMatrix::SpinMatrix(unsigned int rows, unsigned int columns)
+	SpinMatrix::SpinMatrix(unsigned int rows, unsigned int columns) noexcept
 		: m_rows(rows), Temperature(0), Energy(0), Magnetization(0), expMap(nullptr), J(1.), B(0), RenormalizationsNo(0)
 	{
 		assert(rows != 0);
@@ -16,7 +16,7 @@ namespace MonteCarlo {
 
 		m_cols = columns;
 
-		m_spins = new int[rows * columns];
+		m_spins = new int[static_cast<size_t>(rows) * columns];
 	}
 
 
@@ -39,8 +39,8 @@ namespace MonteCarlo {
 	}
 
 
-	SpinMatrix::SpinMatrix(SpinMatrix&& s)
-		: m_rows(s.m_rows), m_cols(s.m_cols), Temperature(s.Temperature), Energy(s.Energy), J(s.J), B(s.B), m_spins(s.m_spins), expMap(s.expMap), RenormalizationsNo(s.RenormalizationsNo)
+	SpinMatrix::SpinMatrix(SpinMatrix&& s) noexcept
+		: m_rows(s.m_rows), m_cols(s.m_cols), Temperature(s.Temperature), Energy(s.Energy), Magnetization(s.Magnetization), J(s.J), B(s.B), m_spins(s.m_spins), expMap(s.expMap), RenormalizationsNo(s.RenormalizationsNo)
 	{
 		s.m_spins = nullptr;
 		s.expMap = nullptr;
@@ -73,7 +73,7 @@ namespace MonteCarlo {
 	}
 
 
-	SpinMatrix& SpinMatrix::operator=(SpinMatrix&& s)
+	SpinMatrix& SpinMatrix::operator=(SpinMatrix&& s) noexcept
 	{
 		if (&s == this) return *this;
 
@@ -149,7 +149,7 @@ namespace MonteCarlo {
 			for (unsigned int i = 0; i < size; ++i) m_spins[i] = (options.B > 0 ? -1 : 1);
 
 			Energy = (-2. - options.B) * size;
-			Magnetization = size * (options.B > 0 ? -1 : 1);
+			Magnetization = size * (options.B > 0 ? -1. : 1.);
 			break;
 		}
 
@@ -178,7 +178,7 @@ namespace MonteCarlo {
 				// flip the spin
 				m_spins[m_cols*row + col] *= -1;
 				Energy += energyDif;
-				Magnetization += 2 * GetSpin(row, col);
+				Magnetization += 2LL * GetSpin(row, col);
 			}
 			else
 			{
@@ -191,7 +191,7 @@ namespace MonteCarlo {
 					// flip the spin
 					m_spins[m_cols*row + col] *= -1;
 					Energy += energyDif;
-					Magnetization += 2 * GetSpin(row, col);
+					Magnetization += 2LL * GetSpin(row, col);
 				}
 				// else reject it, which means do nothing
 			}

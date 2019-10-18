@@ -268,7 +268,7 @@ MonteCarlo::SpinMatrix CIsingMonteCarloDoc::GetData()
 				++iter;
 			}
 
-			stat /= opt.numThreads * opt.collectionSteps;
+			stat /= static_cast<double>(opt.numThreads) * opt.collectionSteps;
 
 			statsList.push_back(stat);
 		}
@@ -310,7 +310,7 @@ void CIsingMonteCarloDoc::SetupEnergyChartData()
 
 	for (auto &&stat : statsList)
 	{
-		double val = stat.AvgE / (opt.latticeSize * opt.latticeSize);
+		double val = stat.AvgE / (static_cast<double>(opt.latticeSize) * opt.latticeSize);
 
 		data.push_back(std::make_pair(stat.Temperature, val));
 	}
@@ -329,7 +329,7 @@ void CIsingMonteCarloDoc::SetupMagnetizationChartData()
 
 	for (auto &&stat : statsList)
 	{
-		double val = stat.AvgAbsM / (opt.latticeSize * opt.latticeSize);
+		double val = stat.AvgAbsM / (static_cast<double>(opt.latticeSize) * opt.latticeSize);
 
 		data.push_back(std::make_pair(stat.Temperature, val));
 	}

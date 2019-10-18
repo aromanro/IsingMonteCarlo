@@ -401,21 +401,30 @@ CIsingMonteCarloDoc* CMainFrame::GetDocument()
 
 void CMainFrame::OnViewOptions()
 {
-	COptionsPropertySheet sheet(L"Options", this);
+	COptionsPropertySheet* sheet = new COptionsPropertySheet(L"Options", this);
 
-	CIsingModelPropertyPage page1;
-	CSimulationPropertyPage page2;
-	CRenormalizationPropertyPage page3;
-	CDisplayPropertyPage page4;
-	CChartsPropertyPage page5;
+	CIsingModelPropertyPage *page1 = new CIsingModelPropertyPage;
+	sheet->AddPage(page1);
 
-	sheet.AddPage(&page1);
-	sheet.AddPage(&page2);
-	sheet.AddPage(&page3);
-	sheet.AddPage(&page4);
-	sheet.AddPage(&page5);
+	CSimulationPropertyPage *page2 = new CSimulationPropertyPage;
+	sheet->AddPage(page2);
 
-	sheet.DoModal();
+	CRenormalizationPropertyPage* page3 = new CRenormalizationPropertyPage;
+	sheet->AddPage(page3);
+
+	CDisplayPropertyPage* page4 = new CDisplayPropertyPage;
+	sheet->AddPage(page4);
+
+	CChartsPropertyPage* page5 = new CChartsPropertyPage;
+	sheet->AddPage(page5);
+
+	sheet->DoModal();
+	delete sheet;
+	delete page1;
+	delete page2;
+	delete page3;
+	delete page4;
+	delete page5;
 }
 
 
