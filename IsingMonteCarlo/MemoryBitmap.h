@@ -21,7 +21,7 @@ protected:
 
 	unsigned char* data;
 
-	inline int GetStrideLength() {
+	inline int GetStrideLength() const {
 		return 4 * ((m_width * 3 + 3) / 4);
 	}
 public:
