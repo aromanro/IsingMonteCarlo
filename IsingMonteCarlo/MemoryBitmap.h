@@ -42,7 +42,7 @@ public:
 
 			for (int horz = 3 * Xpos; horz < limX; horz += 3)
 			{
-				int pos = startLine + horz;
+				const int pos = startLine + horz;
 
 				data[pos] = GetBValue(color);
 				data[pos + 1] = GetGValue(color);
