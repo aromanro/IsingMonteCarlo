@@ -84,6 +84,9 @@
     <ClInclude Include="StatisticsBin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="StatisticsBinCollection.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="IsingMonteCarlo.cpp">
