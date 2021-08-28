@@ -87,6 +87,9 @@
     <ClInclude Include="StatisticsBinCollection.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Bootstrap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="IsingMonteCarlo.cpp">

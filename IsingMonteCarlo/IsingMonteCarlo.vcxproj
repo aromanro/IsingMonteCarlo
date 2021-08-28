@@ -197,6 +197,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bootstrap.h" />
     <ClInclude Include="Chart.h" />
     <ClInclude Include="ChartsPropertyPage.h" />
     <ClInclude Include="ComputationThread.h" />
