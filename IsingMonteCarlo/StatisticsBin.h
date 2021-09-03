@@ -29,7 +29,7 @@ namespace Statistics
 
 		double GetVariance() const { return (sum2 - sum * sum / count) / (count - 1); }
 
-		long long int GetValuesNumber() const { return count; }
+		long long int GetSamplesNumber() const { return count; }
 
 	protected:
 		double sum;

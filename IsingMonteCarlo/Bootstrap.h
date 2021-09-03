@@ -26,6 +26,9 @@ namespace Statistics
 
             ++count;
         }
+
+        long long int GetSamplesNumber() const { return count; }
+
     protected:
         long long sampleSize;
         long long int count;
