@@ -27,7 +27,23 @@ namespace Statistics
 
 		double GetAverage2() const { return sum2 / count; }
 
-		double GetVariance() const { return (sum2 - sum * sum / count) / (count - 1); }
+		double GetVariance() const 
+		{ 
+			const double m = GetAverage();
+
+			return GetAverage2() - m * m;
+		}
+
+		double GetStandardDeviation() const
+		{
+			return sqrt(GetVariance());
+		}
+
+		double GetNonParametricStandardDeviation() const
+		{
+			return count * GetStandardDeviation() / (count - 1.);
+		}
+
 
 		long long int GetSamplesNumber() const { return count; }
 
