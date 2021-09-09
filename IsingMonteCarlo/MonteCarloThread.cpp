@@ -7,7 +7,6 @@
 
 
 #include <string>
-#include <strstream>
 
 namespace MonteCarlo {
 
