@@ -77,7 +77,6 @@ public:
 #endif
 
 protected:
-
 // Generated message map functions
 protected:
 	DECLARE_MESSAGE_MAP()

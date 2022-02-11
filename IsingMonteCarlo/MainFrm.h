@@ -17,12 +17,8 @@ protected: // create from serialization only
 
 // Attributes
 public:
-
 // Operations
-public:
-
 // Overrides
-public:
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 	virtual BOOL LoadFrame(UINT nIDResource, DWORD dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, CWnd* pParentWnd = NULL, CCreateContext* pContext = NULL);
 
@@ -53,8 +49,8 @@ protected:
 	BOOL CreateDockingWindows();
 	void SetDockingWindowIcons(BOOL bHiColorIcons);
 
-
 	CIsingMonteCarloDoc* GetDocument();
+
 public:
 	afx_msg void OnViewRenormalization();
 	afx_msg void OnUpdateViewRenormalization(CCmdUI *pCmdUI);

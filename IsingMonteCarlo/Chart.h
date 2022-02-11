@@ -22,6 +22,7 @@ protected:
 		void DrawTicks(Gdiplus::Graphics& g, Gdiplus::Point& start, int length);
 		void DrawGrid(Gdiplus::Graphics& g, Gdiplus::Point& start, int length, int length2);
 		void DrawLabels(Gdiplus::Graphics& g, Gdiplus::Point& start, int length, float fontSize = 0);
+
 	public:
 		Axis(Chart* parent, bool isX);
 
@@ -52,6 +53,7 @@ protected:
 	int GetNeededFontSize(CString& str, const Gdiplus::Graphics& g, const Gdiplus::RectF& boundRect) const;
 
 	void DrawText(CString &str, Gdiplus::Graphics& g, const Gdiplus::RectF& boundRect, Gdiplus::StringAlignment align = Gdiplus::StringAlignmentCenter, float fontSize = 0);
+
 public:
 	Chart();
 	~Chart();
@@ -72,6 +74,7 @@ public:
 			double getYMax() const;
 
 			void Draw(Gdiplus::Graphics& g, const Gdiplus::RectF& boundRect, const Gdiplus::RectF& dataRect, bool spline = true) const;
+
 		protected:
 			static double ConvertValue(double val, double valMin, double valMax, double chartMin, double chartMax);
 		};

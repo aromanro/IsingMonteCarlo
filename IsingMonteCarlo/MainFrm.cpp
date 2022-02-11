@@ -193,7 +193,6 @@ BOOL CMainFrame::CreateDockingWindows()
 
 void CMainFrame::SetDockingWindowIcons(BOOL /*bHiColorIcons*/)
 {
-
 }
 
 // CMainFrame diagnostics
@@ -348,7 +347,6 @@ BOOL CMainFrame::LoadFrame(UINT nIDResource, DWORD dwDefaultStyle, CWnd* pParent
 void CMainFrame::OnSettingChange(UINT uFlags, LPCTSTR lpszSection)
 {
 	CFrameWndEx::OnSettingChange(uFlags, lpszSection);
-
 }
 
 

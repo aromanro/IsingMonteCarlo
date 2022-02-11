@@ -15,12 +15,8 @@ protected: // create from serialization only
 // Attributes
 public:
 	CIsingMonteCarloDoc* GetDocument() const;
-
 // Operations
-public:
-
 // Overrides
-public:
 	virtual void OnDraw(CDC* pDC);  // overridden to draw this view
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 protected:
@@ -60,6 +56,7 @@ protected:
 
 
 	DECLARE_MESSAGE_MAP()
+
 public:
 	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
 	afx_msg void OnTimer(UINT_PTR nIDEvent);

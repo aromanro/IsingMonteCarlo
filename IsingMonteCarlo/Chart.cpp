@@ -546,7 +546,6 @@ void Chart::Draw(const CDC* pDC, CRect& rect)
 	// now draw the buffer on the screen
 	Gdiplus::Graphics gdi(pDC->GetSafeHdc());
 	gdi.DrawImage(&buffer, posX, posY);
-
 }
 
 void Chart::AddDataSet(const double *dataX, const double *dataY, unsigned int len, float lineWidth, COLORREF color)
