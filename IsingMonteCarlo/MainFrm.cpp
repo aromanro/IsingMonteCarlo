@@ -185,7 +185,6 @@ BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 
 BOOL CMainFrame::CreateDockingWindows()
 {
-
 	SetDockingWindowIcons(theApp.m_bHiColorIcons);
 
 	return TRUE;

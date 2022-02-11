@@ -5,12 +5,10 @@
 #pragma once
 
 
-
 class CIsingMonteCarloDoc;
 
 class CMainFrame : public CFrameWndEx
-{
-	
+{	
 protected: // create from serialization only
 	CMainFrame();
 	DECLARE_DYNCREATE(CMainFrame)
