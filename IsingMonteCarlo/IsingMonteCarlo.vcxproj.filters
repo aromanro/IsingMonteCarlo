@@ -90,6 +90,12 @@
     <ClInclude Include="Bootstrap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ChartAxis.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DataSets.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="IsingMonteCarlo.cpp">
@@ -147,6 +153,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ChartsPropertyPage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ChartAxis.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DataSets.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

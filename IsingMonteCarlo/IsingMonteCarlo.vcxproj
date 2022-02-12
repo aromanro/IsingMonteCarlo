@@ -203,8 +203,10 @@
   <ItemGroup>
     <ClInclude Include="Bootstrap.h" />
     <ClInclude Include="Chart.h" />
+    <ClInclude Include="ChartAxis.h" />
     <ClInclude Include="ChartsPropertyPage.h" />
     <ClInclude Include="ComputationThread.h" />
+    <ClInclude Include="DataSets.h" />
     <ClInclude Include="DisplayPropertyPage.h" />
     <ClInclude Include="IsingModelPropertyPage.h" />
     <ClInclude Include="IsingMonteCarlo.h" />
@@ -228,8 +230,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Chart.cpp" />
+    <ClCompile Include="ChartAxis.cpp" />
     <ClCompile Include="ChartsPropertyPage.cpp" />
     <ClCompile Include="ComputationThread.cpp" />
+    <ClCompile Include="DataSets.cpp" />
     <ClCompile Include="DisplayPropertyPage.cpp" />
     <ClCompile Include="IsingModelPropertyPage.cpp" />
     <ClCompile Include="IsingMonteCarlo.cpp" />
