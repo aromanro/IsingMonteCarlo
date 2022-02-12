@@ -35,6 +35,7 @@ namespace MonteCarlo {
 	protected:
 		virtual void Calculate();
 		bool WarmupLoop();
+		bool Step(double temperature, double tempStep);
 		void PassData();
 		void PassStats(const Statistics& stats);
 

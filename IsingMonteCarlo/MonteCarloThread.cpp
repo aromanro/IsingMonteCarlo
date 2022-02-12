@@ -38,25 +38,30 @@ namespace MonteCarlo {
 		}
 
 		for (double temperature = startTemp; opt.startIsing == Options::IsingStart::ZeroTemperature ? temperature < endTemp : temperature > endTemp; temperature += tempStep)
-		{
-			if (!TemperatureStep(temperature)) break;
-
-			// special case, calculate for renormalization temperature, too
-			if ((temperature < opt.renormalizationTemperature1 && opt.renormalizationTemperature1 < temperature + tempStep) || (temperature > opt.renormalizationTemperature1 && opt.renormalizationTemperature1 > temperature + tempStep))
-			{
-				if (!TemperatureStep(opt.renormalizationTemperature1)) break;
-			}
-			if ((temperature < opt.renormalizationTemperature2 && opt.renormalizationTemperature2 < temperature + tempStep) || (temperature > opt.renormalizationTemperature2 && opt.renormalizationTemperature2 > temperature + tempStep))
-			{
-				if (!TemperatureStep(opt.renormalizationTemperature2)) break;
-			}
-			if ((temperature < opt.renormalizationTemperature3 && opt.renormalizationTemperature3 < temperature + tempStep) || (temperature > opt.renormalizationTemperature3 && opt.renormalizationTemperature3 > temperature + tempStep))
-			{
-				if (!TemperatureStep(opt.renormalizationTemperature3)) break;
-			}
-		}
+			if (!Step(temperature, tempStep)) break;
 
 		if (doc) ++doc->threadsEnded;
+	}
+
+	bool MonteCarloThread::Step(double temperature, double tempStep)
+	{
+		if (!TemperatureStep(temperature)) return false;
+
+		// special case, calculate for renormalization temperature, too
+		if ((temperature < opt.renormalizationTemperature1 && opt.renormalizationTemperature1 < temperature + tempStep) || (temperature > opt.renormalizationTemperature1 && opt.renormalizationTemperature1 > temperature + tempStep))
+		{
+			if (!TemperatureStep(opt.renormalizationTemperature1)) return false;
+		}
+		if ((temperature < opt.renormalizationTemperature2 && opt.renormalizationTemperature2 < temperature + tempStep) || (temperature > opt.renormalizationTemperature2 && opt.renormalizationTemperature2 > temperature + tempStep))
+		{
+			if (!TemperatureStep(opt.renormalizationTemperature2)) return false;
+		}
+		if ((temperature < opt.renormalizationTemperature3 && opt.renormalizationTemperature3 < temperature + tempStep) || (temperature > opt.renormalizationTemperature3 && opt.renormalizationTemperature3 > temperature + tempStep))
+		{
+			if (!TemperatureStep(opt.renormalizationTemperature3)) return false;
+		}
+
+		return true;
 	}
 
 	bool MonteCarloThread::WarmupLoop()
