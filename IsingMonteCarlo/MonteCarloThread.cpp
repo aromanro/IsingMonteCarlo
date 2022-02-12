@@ -48,21 +48,21 @@ namespace MonteCarlo {
 		if (!TemperatureStep(temperature)) return false;
 
 		// special case, calculate for renormalization temperature, too
-		if ((temperature < opt.renormalizationTemperature1 && opt.renormalizationTemperature1 < temperature + tempStep) || (temperature > opt.renormalizationTemperature1 && opt.renormalizationTemperature1 > temperature + tempStep))
-		{
-			if (!TemperatureStep(opt.renormalizationTemperature1)) return false;
-		}
-		if ((temperature < opt.renormalizationTemperature2 && opt.renormalizationTemperature2 < temperature + tempStep) || (temperature > opt.renormalizationTemperature2 && opt.renormalizationTemperature2 > temperature + tempStep))
-		{
-			if (!TemperatureStep(opt.renormalizationTemperature2)) return false;
-		}
-		if ((temperature < opt.renormalizationTemperature3 && opt.renormalizationTemperature3 < temperature + tempStep) || (temperature > opt.renormalizationTemperature3 && opt.renormalizationTemperature3 > temperature + tempStep))
-		{
-			if (!TemperatureStep(opt.renormalizationTemperature3)) return false;
-		}
+		if (!InIntervalCompute(temperature, opt.renormalizationTemperature1, tempStep)) return false;
+		if (!InIntervalCompute(temperature, opt.renormalizationTemperature2, tempStep)) return false;
+		if (!InIntervalCompute(temperature, opt.renormalizationTemperature3, tempStep)) return false;
 
 		return true;
 	}
+
+	bool MonteCarloThread::InIntervalCompute(double temperature, double renormTemp, double tempStep)
+	{
+		if ((temperature < renormTemp && renormTemp < temperature + tempStep) || (temperature > renormTemp && renormTemp > temperature + tempStep))
+			if (!TemperatureStep(renormTemp)) return false;
+
+		return true;
+	}
+
 
 	bool MonteCarloThread::WarmupLoop()
 	{
