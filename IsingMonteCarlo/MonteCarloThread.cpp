@@ -25,21 +25,7 @@ namespace MonteCarlo {
 
 	void MonteCarloThread::Calculate()
 	{
-		// warmup loop
-		spins.Temperature = opt.lowTemperature;
-		spins.setExpMap();
-		for (unsigned long i = 0; i < opt.warmupSteps; ++i)
-		{
-			spins.MonteCarloSweep();
-
-			if (Terminate)
-			{
-				if (doc) ++doc->threadsEnded;
-				return;
-			}
-
-			PassData();
-		}
+		if (!WarmupLoop()) return;
 
 		double tempStep = opt.temperatureStep;
 		double startTemp = opt.lowTemperature;
@@ -70,10 +56,28 @@ namespace MonteCarlo {
 			}
 		}
 
-
 		if (doc) ++doc->threadsEnded;
 	}
 
+	bool MonteCarloThread::WarmupLoop()
+	{
+		spins.Temperature = opt.lowTemperature;
+		spins.setExpMap();
+		for (unsigned long i = 0; i < opt.warmupSteps; ++i)
+		{
+			spins.MonteCarloSweep();
+
+			if (Terminate)
+			{
+				if (doc) ++doc->threadsEnded;
+				return false;
+			}
+
+			PassData();
+		}
+
+		return true;
+	}
 
 	bool MonteCarloThread::TemperatureStep(double temperature)
 	{

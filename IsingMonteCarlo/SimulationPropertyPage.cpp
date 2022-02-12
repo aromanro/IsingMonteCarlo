@@ -69,7 +69,6 @@ END_MESSAGE_MAP()
 
 void CSimulationPropertyPage::ApplyValues()
 {
-
 	theApp.options.numThreads = m_threadsNo;
 
 	if (m_minTemp > m_maxTemp) std::swap(m_minTemp, m_maxTemp);

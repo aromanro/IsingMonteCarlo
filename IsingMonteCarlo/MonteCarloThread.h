@@ -34,6 +34,7 @@ namespace MonteCarlo {
 
 	protected:
 		virtual void Calculate();
+		bool WarmupLoop();
 		void PassData();
 		void PassStats(const Statistics& stats);
 

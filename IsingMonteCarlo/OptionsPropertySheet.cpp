@@ -13,13 +13,11 @@ IMPLEMENT_DYNAMIC(COptionsPropertySheet, CMFCPropertySheet)
 COptionsPropertySheet::COptionsPropertySheet(UINT nIDCaption, CWnd* pParentWnd, UINT iSelectPage)
 	:CMFCPropertySheet(nIDCaption, pParentWnd, iSelectPage), hIcon(0)
 {
-
 }
 
 COptionsPropertySheet::COptionsPropertySheet(LPCTSTR pszCaption, CWnd* pParentWnd, UINT iSelectPage)
 	:CMFCPropertySheet(pszCaption, pParentWnd, iSelectPage), hIcon(0)
 {
-
 }
 
 COptionsPropertySheet::~COptionsPropertySheet()
