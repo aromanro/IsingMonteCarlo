@@ -1,6 +1,7 @@
 # IsingMonteCarlo
 A program implementing Metropolis Monte Carlo for the 2D square-lattice Ising model and the spin block renormalization.
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/4b0e6ceb95fb4e91a026b70a19398dac)](https://app.codacy.com/gh/aromanro/IsingMonteCarlo?utm_source=github.com&utm_medium=referral&utm_content=aromanro/IsingMonteCarlo&utm_campaign=Badge_Grade_Settings)
 [![CodeFactor](https://www.codefactor.io/repository/github/aromanro/isingmontecarlo/badge)](https://www.codefactor.io/repository/github/aromanro/isingmontecarlo)
 
 A more detailed description can be found at https://compphys.go.ro/metropolis-for-2d-ising-and-spin-block-renormalization/
