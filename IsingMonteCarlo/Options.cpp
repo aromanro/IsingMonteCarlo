@@ -57,7 +57,7 @@ void Options::Load()
 	maxSusceptibility = theApp.GetProfileInt(L"options", L"maxSusceptibility", 150);
 	ticksSpecificHeat = theApp.GetProfileInt(L"options", L"ticksSpecificHeat", 4);
 	ticksSusceptibility = theApp.GetProfileInt(L"options", L"ticksSusceptibility", 3);
-	useSplines = (theApp.GetProfileInt(L"options", L"useSplines", 1) ? true : false);
+	useSplines = theApp.GetProfileInt(L"options", L"useSplines", 1) != 0;
 }
 
 void Options::Save()

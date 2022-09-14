@@ -84,7 +84,7 @@ void CChartsPropertyPage::ApplyValues()
 	theApp.options.specificHeatColor = m_specificHeatColor.GetColor();
 	theApp.options.susceptibilityColor = m_susceptibilityColor.GetColor();
 
-	theApp.options.useSplines = (m_useSplines == 1 ? true : false);
+	theApp.options.useSplines = m_useSplines == 1;
 	
 	theApp.options.Save();
 
