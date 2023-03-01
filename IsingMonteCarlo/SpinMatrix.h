@@ -12,7 +12,7 @@ namespace MonteCarlo {
 	protected:
 		unsigned int m_rows;
 		unsigned int m_cols;
-		int *m_spins;
+		std::vector<int> m_spins;
 
 
 		double Energy;
@@ -23,7 +23,7 @@ namespace MonteCarlo {
 
 		std::mt19937 rndEngine;
 
-		double *expMap;
+		std::vector<double> expMap;
 
 		unsigned int RenormalizationsNo;
 
