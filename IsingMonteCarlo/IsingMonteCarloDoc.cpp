@@ -33,13 +33,14 @@ END_MESSAGE_MAP()
 // CIsingMonteCarloDoc construction/destruction
 
 CIsingMonteCarloDoc::CIsingMonteCarloDoc()
-	: spins(theApp.options.latticeSize), finishedCalc(false), computing(false), displayingRenormalization(false),
+	: spins(theApp.options.latticeSize), 
 	spinsRenorm1(theApp.options.latticeSize),
 	spinsRenorm2(theApp.options.latticeSize),
 	spinsRenorm3(theApp.options.latticeSize),
 	dispSpinsRenorm1(theApp.options.latticeSize),
 	dispSpinsRenorm2(theApp.options.latticeSize),
-	dispSpinsRenorm3(theApp.options.latticeSize)
+	dispSpinsRenorm3(theApp.options.latticeSize),
+	finishedCalc(false), computing(false), displayingRenormalization(false)
 {
 	// TODO: add one-time construction code here
 	m_energyChart.title = L"Energy/spin";
@@ -133,7 +134,7 @@ void CIsingMonteCarloDoc::LaunchThreads()
 
 void CIsingMonteCarloDoc::StopThreads()
 {
-	for (auto &thrd : threadsList) thrd->Terminate = true;
+	for (const auto &thrd : threadsList) thrd->Terminate = true;
 	threadsList.clear();
 
 	computing = false;
@@ -293,7 +294,7 @@ MonteCarlo::SpinMatrix CIsingMonteCarloDoc::GetData()
 		SetupCharts();
 	}
 
-	std::lock_guard<std::mutex> lock(spinsSection);
+	std::lock_guard lock(spinsSection);
 
 
 	MonteCarlo::SpinMatrix mat{ spins };

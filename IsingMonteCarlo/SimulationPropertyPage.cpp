@@ -24,6 +24,7 @@ CSimulationPropertyPage::CSimulationPropertyPage()
 	m_warmupSteps = theApp.options.warmupSteps;
 	m_equilibrationSteps = theApp.options.equilibrationSteps;
 	m_statisticsSteps = theApp.options.collectionSteps;
+	m_stepsBetweenCollect = theApp.options.stepsBetweenCollect;
 }
 
 CSimulationPropertyPage::~CSimulationPropertyPage()
@@ -46,6 +47,7 @@ void CSimulationPropertyPage::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_EDIT5, m_warmupSteps);
 	DDX_Text(pDX, IDC_EDIT6, m_equilibrationSteps);
 	DDX_Text(pDX, IDC_EDIT7, m_statisticsSteps);
+	DDX_Text(pDX, IDC_EDIT8, m_stepsBetweenCollect);
 
 	DDV_MinMaxUInt(pDX, m_threadsNo, 1, 128);
 	DDV_MinMaxDouble(pDX, m_stepTemp, 0.01, 1.);
@@ -61,6 +63,7 @@ BEGIN_MESSAGE_MAP(CSimulationPropertyPage, CMFCPropertyPage)
 	ON_EN_CHANGE(IDC_EDIT5, &CSimulationPropertyPage::OnEnChangeEdit)
 	ON_EN_CHANGE(IDC_EDIT6, &CSimulationPropertyPage::OnEnChangeEdit)
 	ON_EN_CHANGE(IDC_EDIT7, &CSimulationPropertyPage::OnEnChangeEdit)
+	ON_EN_CHANGE(IDC_EDIT8, &CSimulationPropertyPage::OnEnChangeEdit)
 END_MESSAGE_MAP()
 
 
@@ -80,6 +83,7 @@ void CSimulationPropertyPage::ApplyValues()
 	theApp.options.warmupSteps = m_warmupSteps;
 	theApp.options.equilibrationSteps = m_equilibrationSteps;
 	theApp.options.collectionSteps = m_statisticsSteps;
+	theApp.options.stepsBetweenCollect = m_stepsBetweenCollect;
 
 	theApp.options.Save();
 }

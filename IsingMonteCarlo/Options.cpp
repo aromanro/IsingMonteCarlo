@@ -20,7 +20,8 @@ Options::Options()
 	maxSpecificHeat(4), maxSusceptibility(150),
 	ticksSpecificHeat(4),
 	ticksSusceptibility(3),
-	useSplines(true)
+	useSplines(true),
+	stepsBetweenCollect(1)
 {
 }
 
@@ -58,6 +59,7 @@ void Options::Load()
 	ticksSpecificHeat = theApp.GetProfileInt(L"options", L"ticksSpecificHeat", 4);
 	ticksSusceptibility = theApp.GetProfileInt(L"options", L"ticksSusceptibility", 3);
 	useSplines = theApp.GetProfileInt(L"options", L"useSplines", 1) != 0;
+	stepsBetweenCollect = theApp.GetProfileInt(L"options", L"stepsBetweenCollect", 1);
 }
 
 void Options::Save()
@@ -89,6 +91,7 @@ void Options::Save()
 	theApp.WriteProfileInt(L"options", L"ticksSpecificHeat", ticksSpecificHeat);
 	theApp.WriteProfileInt(L"options", L"ticksSusceptibility", ticksSusceptibility);
 	theApp.WriteProfileInt(L"options", L"useSplines", useSplines ? 1 : 0);
+	theApp.WriteProfileInt(L"options", L"stepsBetweenCollect", stepsBetweenCollect);
 }
 
 COLORREF Options::GetColor(LPCTSTR param, COLORREF defval)

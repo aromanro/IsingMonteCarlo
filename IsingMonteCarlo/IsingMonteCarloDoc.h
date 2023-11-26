@@ -29,7 +29,7 @@ public:
 
 	std::list<std::unique_ptr<MonteCarlo::MonteCarloThread>> threadsList;
 	
-	std::atomic_int threadsEnded;
+	std::atomic_int threadsEnded{ 0 };
 
 	MonteCarlo::SpinMatrix spins;
 

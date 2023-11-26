@@ -81,6 +81,7 @@
 #define IDC_EDIT7                       1006
 #define IDC_MFCCOLORBUTTON1             1006
 #define IDC_MFCCOLORBUTTON2             1007
+#define IDC_EDIT8                       1007
 #define IDC_MFCCOLORBUTTON3             1008
 #define IDC_MFCCOLORBUTTON4             1009
 #define IDC_CHECK1                      1010

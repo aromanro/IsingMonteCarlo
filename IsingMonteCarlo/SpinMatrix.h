@@ -115,6 +115,8 @@ namespace MonteCarlo {
 		void Seed();
 
 		SpinMatrix Renormalize(Options::BlockRenormalizationType type = Options::BlockRenormalizationType::Majority) const;
+		SpinMatrix RenormalizeMajority() const;
+		SpinMatrix RenormalizeDecimation() const;
 		void RenormalizeInPlace(Options::BlockRenormalizationType type = Options::BlockRenormalizationType::Majority);
 	};
 

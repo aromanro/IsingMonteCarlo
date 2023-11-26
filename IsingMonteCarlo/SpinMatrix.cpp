@@ -156,7 +156,7 @@ namespace MonteCarlo {
 			{
 				// accept it
 				// flip the spin
-				m_spins[m_cols*row + col] *= -1;
+				m_spins[m_cols * row + col] *= -1;
 				Energy += energyDif;
 				Magnetization += 2LL * GetSpin(row, col);
 			}
@@ -169,7 +169,7 @@ namespace MonteCarlo {
 				{
 					// accept it
 					// flip the spin
-					m_spins[m_cols*row + col] *= -1;
+					m_spins[m_cols * row + col] *= -1;
 					Energy += energyDif;
 					Magnetization += 2LL * GetSpin(row, col);
 				}
@@ -197,48 +197,63 @@ namespace MonteCarlo {
 
 	SpinMatrix SpinMatrix::Renormalize(Options::BlockRenormalizationType type) const
 	{
+		if (type == Options::BlockRenormalizationType::Majority)
+			return RenormalizeMajority();
+
+		return RenormalizeDecimation();
+	}
+
+	SpinMatrix SpinMatrix::RenormalizeMajority() const
+	{
 		// make a matrix of the same size, using the periodic boundary conditions
 		const unsigned int halfRows = m_rows / 2;
 		const unsigned int halfCols = m_cols / 2;
 
+		SpinMatrix result(m_rows, m_cols);
+
+		for (unsigned int i = 0; i < m_rows; ++i)
+		{
+			const unsigned int twoiMinusHalfRows = 2 * i - halfRows;
+			const unsigned int twoiMinusHalfRowsPlus1 = twoiMinusHalfRows + 1;
+			for (unsigned int j = 0; j < m_cols; ++j)
+			{
+				// count the spins up in the block
+				unsigned int spinsUp = 0;
+				const unsigned int twojMinusHalfCols = 2 * j - halfCols;
+				const unsigned int twojMinusHalfColsPlus1 = twojMinusHalfCols + 1;
+
+				int spin = GetSpinPeriodic(twoiMinusHalfRows, twojMinusHalfCols);
+
+				if (spin > 0) ++spinsUp;
+				if (GetSpinPeriodic(twoiMinusHalfRowsPlus1, twojMinusHalfCols) > 0) ++spinsUp;
+				if (GetSpinPeriodic(twoiMinusHalfRows, twojMinusHalfColsPlus1) > 0) ++spinsUp;
+				if (GetSpinPeriodic(twoiMinusHalfRowsPlus1, twojMinusHalfColsPlus1) > 0) ++spinsUp;
+
+				if (spinsUp > 2) result(i, j) = 1;
+				else if (spinsUp < 2) result(i, j) = -1;
+				else result(i, j) = spin; // two spins up, two spins down, just let decimation decide, a random value is sometimes used instead
+			}
+		}
+
+		result.RenormalizationsNo = RenormalizationsNo + 1;
+
+		return result;
+	}
+
+	SpinMatrix SpinMatrix::RenormalizeDecimation() const
+	{
+		// make a matrix of the same size, using the periodic boundary conditions
+		const unsigned int halfRows = m_rows / 2;
+		const unsigned int halfCols = m_cols / 2;
 
 		SpinMatrix result(m_rows, m_cols);
 
-		if (type == Options::BlockRenormalizationType::Majority)
+		// decimation, just pick the value in the left upper corner of the block
+		for (unsigned int i = 0; i < m_rows; ++i)
 		{
-			for (unsigned int i = 0; i < m_rows; ++i)
-			{
-				const unsigned int twoiMinusHalfRows = 2 * i - halfRows;
-				const unsigned int twoiMinusHalfRowsPlus1 = twoiMinusHalfRows + 1;
-				for (unsigned int j = 0; j < m_cols; ++j)
-				{
-					// count the spins up in the block
-					unsigned int spinsUp = 0;
-					const unsigned int twojMinusHalfCols = 2 * j - halfCols;
-					const unsigned int twojMinusHalfColsPlus1 = twojMinusHalfCols + 1;
-
-					int spin = GetSpinPeriodic(twoiMinusHalfRows, twojMinusHalfCols);
-
-					if (spin > 0) ++spinsUp;
-					if (GetSpinPeriodic(twoiMinusHalfRowsPlus1, twojMinusHalfCols) > 0) ++spinsUp;
-					if (GetSpinPeriodic(twoiMinusHalfRows, twojMinusHalfColsPlus1) > 0) ++spinsUp;
-					if (GetSpinPeriodic(twoiMinusHalfRowsPlus1, twojMinusHalfColsPlus1) > 0) ++spinsUp;
-
-					if (spinsUp > 2) result(i, j) = 1;
-					else if (spinsUp < 2) result(i, j) = -1;
-					else result(i, j) = spin; // two spins up, two spins down, just let decimation decide, a random value is sometimes used instead
-				}
-			}
-		}
-		else
-		{
-			// decimation, just pick the value in the left upper corner of the block
-			for (unsigned int i = 0; i < m_rows; ++i)
-			{
-				const unsigned int twoiMinusHalfRows = 2 * i - halfRows;
-				for (unsigned int j = 0; j < m_cols; ++j)
-					result(i, j) = GetSpinPeriodic(twoiMinusHalfRows, 2 * j - halfCols);
-			}
+			const unsigned int twoiMinusHalfRows = 2 * i - halfRows;
+			for (unsigned int j = 0; j < m_cols; ++j)
+				result(i, j) = GetSpinPeriodic(twoiMinusHalfRows, 2 * j - halfCols);
 		}
 
 		result.RenormalizationsNo = RenormalizationsNo + 1;

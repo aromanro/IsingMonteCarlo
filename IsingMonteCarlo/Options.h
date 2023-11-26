@@ -48,6 +48,8 @@ public:
 
 	bool useSplines;
 
+	unsigned int stepsBetweenCollect;
+
 
 	Options();
 	~Options();

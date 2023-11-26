@@ -35,6 +35,7 @@ protected:
 	unsigned int m_warmupSteps;
 	unsigned int m_equilibrationSteps;
 	unsigned int m_statisticsSteps;
+	unsigned int m_stepsBetweenCollect;
 
 	CNumberEdit m_minTempEdit;
 	CNumberEdit m_maxTempEdit;

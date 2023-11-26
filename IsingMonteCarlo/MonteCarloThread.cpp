@@ -37,7 +37,7 @@ namespace MonteCarlo {
 			tempStep *= -1;
 		}
 
-		for (double temperature = startTemp; opt.startIsing == Options::IsingStart::ZeroTemperature ? temperature < endTemp : temperature > endTemp; temperature += tempStep)
+		for (double temperature = startTemp; (opt.startIsing == Options::IsingStart::ZeroTemperature) ? temperature < endTemp : temperature > endTemp; temperature += tempStep)
 			if (!Step(temperature, tempStep)) break;
 
 		if (doc) ++doc->threadsEnded;
@@ -121,7 +121,7 @@ namespace MonteCarlo {
 			PassData();
 		}
 
-		if (collectStats)
+		if (collectStats && steps % opt.stepsBetweenCollect == 0)
 		{
 			stats.Temperature = spins.Temperature;
 
