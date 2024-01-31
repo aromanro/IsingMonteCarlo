@@ -11,28 +11,31 @@ class CIsingMonteCarloView : public CView
 protected: // create from serialization only
 	CIsingMonteCarloView();
 	DECLARE_DYNCREATE(CIsingMonteCarloView)
+	DECLARE_MESSAGE_MAP()
 
-// Attributes
 public:
+	~CIsingMonteCarloView() override;
+
 	CIsingMonteCarloDoc* GetDocument() const;
 // Operations
+	void ResetTimer();
+	void StartTimer();
+	void StopTimer();
 // Overrides
-	virtual void OnDraw(CDC* pDC);  // overridden to draw this view
-	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
+	void OnDraw(CDC* pDC) override;  // overridden to draw this view
+	BOOL PreCreateWindow(CREATESTRUCT& cs) override;
 protected:
-	virtual BOOL OnPreparePrinting(CPrintInfo* pInfo);
-	virtual void OnBeginPrinting(CDC* pDC, CPrintInfo* pInfo);
-	virtual void OnEndPrinting(CDC* pDC, CPrintInfo* pInfo);
+	BOOL OnPreparePrinting(CPrintInfo* pInfo) override;
+	void OnBeginPrinting(CDC* pDC, CPrintInfo* pInfo) override;
+	void OnEndPrinting(CDC* pDC, CPrintInfo* pInfo) override;
 
 // Implementation
-public:
-	virtual ~CIsingMonteCarloView();
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
+	void AssertValid() const override;
+	void Dump(CDumpContext& dc) const override;
 #endif
 
-protected:
+private:
 	UINT_PTR timer;
 
 	MemoryBitmap* bitmap;
@@ -47,27 +50,21 @@ protected:
 
 
 // Generated message map functions
-protected:
 	afx_msg void OnFilePrintPreview();
 	afx_msg void OnRButtonUp(UINT nFlags, CPoint point);
 	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
 
 	void DisplayRenormalizationForSpins(CDC* pDC, bool inc, CRect& rect, MemoryBitmap* renorm, MonteCarlo::SpinMatrix& spinsRenorm, MonteCarlo::SpinMatrix& dispSpinsRenorm, int& renormPixels);
 
-
-	DECLARE_MESSAGE_MAP()
-
-public:
 	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
-	virtual void OnInitialUpdate();
+	void OnInitialUpdate() override;
 	afx_msg void OnDestroy();
-	void StartTimer();
-	void StopTimer();
+
 	void DisplayRenormalization(CDC* pDC, bool inc = false);
-	void ResetTimer();
+
 	afx_msg BOOL OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message);
-	virtual void OnPrepareDC(CDC* pDC, CPrintInfo* pInfo = NULL);
+	void OnPrepareDC(CDC* pDC, CPrintInfo* pInfo = NULL) override;
 };
 
 #ifndef _DEBUG  // debug version in IsingMonteCarloView.cpp

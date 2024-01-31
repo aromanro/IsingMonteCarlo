@@ -15,7 +15,7 @@ namespace MonteCarlo {
 	class MonteCarloThread :
 		public ComputationThread
 	{
-	protected:
+	private:
 		SpinMatrix spins;
 
 	public:
@@ -30,10 +30,10 @@ namespace MonteCarlo {
 		std::list<Statistics> statsList;
 
 		MonteCarloThread(unsigned int rows = 32, unsigned int columns = 0);
-		virtual ~MonteCarloThread();
+		~MonteCarloThread() override;
 
 	protected:
-		virtual void Calculate();
+		void Calculate() override;
 		bool WarmupLoop();
 		bool Step(double temperature, double tempStep);
 		bool InIntervalCompute(double temperature, double lowLimit, double tempStep);

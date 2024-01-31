@@ -11,21 +11,21 @@ class CRenormalizationPropertyPage : public CMFCPropertyPage
 
 public:
 	CRenormalizationPropertyPage();
-	virtual ~CRenormalizationPropertyPage();
+	~CRenormalizationPropertyPage() override;
 
 // Dialog Data
 #ifdef AFX_DESIGN_TIME
 	enum { IDD = IDD_RENORMALIZATION_PROPPAGE };
 #endif
 
-protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+private:
+	void DoDataExchange(CDataExchange* pDX) override;    // DDX/DDV support
 
 	DECLARE_MESSAGE_MAP()
 
 	void ApplyValues();
-	virtual BOOL OnApply();
-	virtual BOOL OnInitDialog();
+	BOOL OnApply() override;
+	BOOL OnInitDialog() override;
 	afx_msg void OnEnChangeEdit();
 	afx_msg void OnBnClickedRadio();
 

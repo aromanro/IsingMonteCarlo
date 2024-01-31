@@ -11,22 +11,22 @@ class CIsingModelPropertyPage : public CMFCPropertyPage
 
 public:
 	CIsingModelPropertyPage();
-	virtual ~CIsingModelPropertyPage();
+	~CIsingModelPropertyPage() override;
 
 // Dialog Data
 #ifdef AFX_DESIGN_TIME
 	enum { IDD = IDD_ISING_PROPPAGE };
 #endif
 
-protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+private:
+	void DoDataExchange(CDataExchange* pDX) override;    // DDX/DDV support
 
 	DECLARE_MESSAGE_MAP()
 
 	afx_msg void OnEnChangeEdit();
 	void ApplyValues();
-	virtual BOOL OnApply();
-	virtual BOOL OnInitDialog();
+	BOOL OnApply() override;
+	BOOL OnInitDialog() override;
 
 	unsigned int m_latticeSize;
 	double m_B;

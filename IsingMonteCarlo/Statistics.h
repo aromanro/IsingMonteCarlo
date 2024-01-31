@@ -6,20 +6,13 @@ namespace MonteCarlo {
 	class Statistics
 	{
 	public:
-		double AvgE;
-		double AvgM;
-		double AvgE2;
-		double AvgM2;
-		double AvgAbsM;
+		double AvgE = 0;
+		double AvgM = 0;
+		double AvgE2 = 0;
+		double AvgM2 = 0;
+		double AvgAbsM = 0;
 
-		double Temperature;
-
-		Statistics();
-		~Statistics();
-
-		Statistics(const Statistics& src);
-
-		Statistics& operator=(const Statistics& src);
+		double Temperature = 0;
 
 		Statistics& operator+=(const Statistics& src);
 		Statistics& operator/=(double div);

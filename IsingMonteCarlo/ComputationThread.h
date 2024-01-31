@@ -6,12 +6,13 @@ class ComputationThread
 {
 public:
 	void Start();
+	void join();
+
 protected:
-	std::thread mThread;
 	virtual ~ComputationThread();
 
 	virtual void Calculate() = 0;
-public:
-	void join();
+
+	std::thread mThread;
 };
 

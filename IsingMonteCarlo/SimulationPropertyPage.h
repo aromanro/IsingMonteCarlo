@@ -11,21 +11,21 @@ class CSimulationPropertyPage : public CMFCPropertyPage
 
 public:
 	CSimulationPropertyPage();
-	virtual ~CSimulationPropertyPage();
+	~CSimulationPropertyPage() override;
 
 // Dialog Data
 #ifdef AFX_DESIGN_TIME
 	enum { IDD = IDD_SIMULATION_PROPPAGE };
 #endif
 
-protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+private:
+	void DoDataExchange(CDataExchange* pDX) override;    // DDX/DDV support
 
 	DECLARE_MESSAGE_MAP()
 
 	void ApplyValues();
-	virtual BOOL OnInitDialog();
-	virtual BOOL OnApply();
+	BOOL OnInitDialog() override;
+	BOOL OnApply() override;
 	afx_msg void OnEnChangeEdit();
 
 	unsigned int m_threadsNo;

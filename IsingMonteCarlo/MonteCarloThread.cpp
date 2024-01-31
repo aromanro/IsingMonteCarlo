@@ -141,7 +141,7 @@ namespace MonteCarlo {
 		if (needsData) {
 			needsData = false;
 
-			std::lock_guard<std::mutex> lock(doc->spinsSection);
+			std::lock_guard lock(doc->spinsSection);
 
 			doc->spins = spins;
 		}

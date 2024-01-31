@@ -95,9 +95,9 @@ BOOL CSimulationPropertyPage::OnInitDialog()
 
 	// TODO:  Add extra initialization here
 
-	m_minTempEdit.allowNegative = false;
-	m_maxTempEdit.allowNegative = false;
-	m_stepTempEdit.allowNegative = false;
+	m_minTempEdit.SetAllowNegative(false);
+	m_maxTempEdit.SetAllowNegative(false);
+	m_stepTempEdit.SetAllowNegative(false);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 				  // EXCEPTION: OCX Property Pages should return FALSE

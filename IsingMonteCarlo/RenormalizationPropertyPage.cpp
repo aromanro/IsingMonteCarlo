@@ -95,9 +95,9 @@ BOOL CRenormalizationPropertyPage::OnInitDialog()
 	CMFCPropertyPage::OnInitDialog();
 
 	// TODO:  Add extra initialization here
-	m_Temp1Edit.allowNegative = false;
-	m_Temp2Edit.allowNegative = false;
-	m_Temp3Edit.allowNegative = false;
+	m_Temp1Edit.SetAllowNegative(false);
+	m_Temp2Edit.SetAllowNegative(false);
+	m_Temp3Edit.SetAllowNegative(false);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 				  // EXCEPTION: OCX Property Pages should return FALSE

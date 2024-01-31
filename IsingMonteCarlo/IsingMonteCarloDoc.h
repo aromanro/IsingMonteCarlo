@@ -22,9 +22,14 @@ class CIsingMonteCarloDoc : public CDocument
 protected: // create from serialization only
 	CIsingMonteCarloDoc();
 	DECLARE_DYNCREATE(CIsingMonteCarloDoc)
-
-// Attributes
+	DECLARE_MESSAGE_MAP()
 public:
+	MonteCarlo::SpinMatrix GetData();
+	CIsingMonteCarloView* GetView();
+	void SwitchDisplay();
+	void SetChangeableChartsParams();
+
+	// Attributes
 	std::mutex spinsSection;
 
 	std::list<std::unique_ptr<MonteCarlo::MonteCarloThread>> threadsList;
@@ -55,45 +60,33 @@ public:
 	Chart m_susceptibilityChart;
 
 // Operations
-public:
 	void LaunchThreads();
 	void StopThreads();
 
 // Overrides
-public:
-	virtual BOOL OnNewDocument();
-	virtual void Serialize(CArchive& ar);
+	BOOL OnNewDocument() override;
+	void Serialize(CArchive& ar) override;
 #ifdef SHARED_HANDLERS
-	virtual void InitializeSearchContent();
-	virtual void OnDrawThumbnail(CDC& dc, LPRECT lprcBounds);
+	void InitializeSearchContent() override;
+	void OnDrawThumbnail(CDC& dc, LPRECT lprcBounds) override;
 #endif // SHARED_HANDLERS
 
 // Implementation
-public:
-	virtual ~CIsingMonteCarloDoc();
+	 ~CIsingMonteCarloDoc() override;
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
+	void AssertValid() const override;
+	void Dump(CDumpContext& dc) const override;
 #endif
 
-protected:
 // Generated message map functions
 protected:
-	DECLARE_MESSAGE_MAP()
-
 #ifdef SHARED_HANDLERS
 	// Helper function that sets search content for a Search Handler
 	void SetSearchContent(const CString& value);
 #endif // SHARED_HANDLERS
-protected:
 	void SetupCharts();
 	void SetupEnergyChartData();
 	void SetupMagnetizationChartData();
 	void SetupSpecificHeatChartData();
 	void SetupSusceptibilityChartData();
-public:
-	MonteCarlo::SpinMatrix GetData();
-	CIsingMonteCarloView* GetView();
-	void SwitchDisplay();
-	void SetChangeableChartsParams();
 };

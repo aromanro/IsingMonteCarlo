@@ -15,16 +15,9 @@ public:
 	MemoryBitmap& operator=(MemoryBitmap&& other) noexcept; // move assignment operator
 
 	~MemoryBitmap() noexcept;
-protected:
-	int m_width;
-	int m_height;
 
-	unsigned char* data;
 
-	inline int GetStrideLength() const {
-		return 4 * ((m_width * 3 + 3) / 4);
-	}
-public:
+
 	void SetSize(int width, int height);
 
 	inline void FillSquare(int Xpos, int Ypos, int size, COLORREF color)
@@ -56,5 +49,15 @@ public:
 
 	void Draw(CDC* pDC);
 	void Draw(CDC* pDC, CRect& rect, int origWidth = 0, int origHeight = 0);
+
+private:
+	int m_width;
+	int m_height;
+
+	unsigned char* data;
+
+	inline int GetStrideLength() const {
+		return 4 * ((m_width * 3 + 3) / 4);
+	}
 };
 

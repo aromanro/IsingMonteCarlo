@@ -9,7 +9,7 @@ namespace MonteCarlo {
 
 	class SpinMatrix
 	{
-	protected:
+	private:
 		unsigned int m_rows;
 		unsigned int m_cols;
 		std::vector<int> m_spins;

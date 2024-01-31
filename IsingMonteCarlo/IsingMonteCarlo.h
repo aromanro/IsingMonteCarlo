@@ -27,25 +27,25 @@ public:
 
 
 // Overrides
-public:
-	virtual BOOL InitInstance();
+	BOOL InitInstance() override;
+	void PreLoadState() override;
+	void LoadCustomState() override;
+	void SaveCustomState() override;
+	int ExitInstance() override;
 
 // Implementation:	
 	UINT  m_nAppLook;
 	BOOL  m_bHiColorIcons;
 
-protected:
-	ULONG_PTR gdiplusToken;
-public:
+
 	Options options;
 
-	virtual void PreLoadState();
-	virtual void LoadCustomState();
-	virtual void SaveCustomState();
-
 	afx_msg void OnAppAbout();
+
+protected:
+	ULONG_PTR gdiplusToken;
+
 	DECLARE_MESSAGE_MAP()
-	virtual int ExitInstance();
 };
 
 extern CIsingMonteCarloApp theApp;
