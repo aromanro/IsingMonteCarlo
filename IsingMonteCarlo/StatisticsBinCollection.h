@@ -70,7 +70,7 @@ namespace Statistics
 			return  avg2 - mm * mm;
 		}
 
-	protected:
+	private:
 		std::array<StatisticsBin, N> m_bins;
 	};
 

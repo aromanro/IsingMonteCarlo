@@ -11,7 +11,6 @@ class CIsingModelPropertyPage : public CMFCPropertyPage
 
 public:
 	CIsingModelPropertyPage();
-	~CIsingModelPropertyPage() override;
 
 // Dialog Data
 #ifdef AFX_DESIGN_TIME

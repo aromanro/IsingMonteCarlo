@@ -25,14 +25,6 @@ class CIsingMonteCarloApp : public CWinAppEx
 public:
 	CIsingMonteCarloApp();
 
-
-// Overrides
-	BOOL InitInstance() override;
-	void PreLoadState() override;
-	void LoadCustomState() override;
-	void SaveCustomState() override;
-	int ExitInstance() override;
-
 // Implementation:	
 	UINT  m_nAppLook;
 	BOOL  m_bHiColorIcons;
@@ -42,7 +34,14 @@ public:
 
 	afx_msg void OnAppAbout();
 
-protected:
+private:
+	// Overrides
+	BOOL InitInstance() override;
+	void PreLoadState() override;
+	void LoadCustomState() override;
+	void SaveCustomState() override;
+	int ExitInstance() override;
+
 	ULONG_PTR gdiplusToken;
 
 	DECLARE_MESSAGE_MAP()

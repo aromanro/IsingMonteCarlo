@@ -32,7 +32,7 @@ namespace MonteCarlo {
 		MonteCarloThread(unsigned int rows = 32, unsigned int columns = 0);
 		~MonteCarloThread() override;
 
-	protected:
+	private:
 		void Calculate() override;
 		bool WarmupLoop();
 		bool Step(double temperature, double tempStep);

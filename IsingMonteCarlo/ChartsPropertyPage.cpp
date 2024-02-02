@@ -25,10 +25,6 @@ CChartsPropertyPage::CChartsPropertyPage()
 	m_useSplines = (theApp.options.useSplines ? 1 : 0);
 }
 
-CChartsPropertyPage::~CChartsPropertyPage()
-{
-}
-
 void CChartsPropertyPage::DoDataExchange(CDataExchange* pDX)
 {
 	CMFCPropertyPage::DoDataExchange(pDX);

@@ -47,8 +47,8 @@ public:
 
 	void SetMatrix(const MonteCarlo::SpinMatrix& matrix, unsigned int spinsWidth, unsigned int spinsHeight, unsigned int spinSize);
 
-	void Draw(CDC* pDC);
-	void Draw(CDC* pDC, CRect& rect, int origWidth = 0, int origHeight = 0);
+	void Draw(CDC* pDC) const;
+	void Draw(CDC* pDC, CRect& rect, int origWidth = 0, int origHeight = 0) const;
 
 private:
 	int m_width;

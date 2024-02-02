@@ -24,7 +24,8 @@ public:
 // Overrides
 	void OnDraw(CDC* pDC) override;  // overridden to draw this view
 	BOOL PreCreateWindow(CREATESTRUCT& cs) override;
-protected:
+
+private:
 	BOOL OnPreparePrinting(CPrintInfo* pInfo) override;
 	void OnBeginPrinting(CDC* pDC, CPrintInfo* pInfo) override;
 	void OnEndPrinting(CDC* pDC, CPrintInfo* pInfo) override;
@@ -35,7 +36,6 @@ protected:
 	void Dump(CDumpContext& dc) const override;
 #endif
 
-private:
 	UINT_PTR timer;
 
 	MemoryBitmap* bitmap;

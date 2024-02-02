@@ -3,6 +3,9 @@
 //
 
 #include "stdafx.h"
+
+#include <array>
+
 #include "IsingMonteCarlo.h"
 #include "IsingMonteCarloDoc.h"
 
@@ -43,7 +46,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CFrameWndEx)
 	ON_UPDATE_COMMAND_UI(ID_SIMULATE_RUN, &CMainFrame::OnUpdateSimulateRun)
 END_MESSAGE_MAP()
 
-static UINT indicators[] =
+static std::array<UINT,4> indicators
 {
 	ID_SEPARATOR,           // status line indicator
 	ID_INDICATOR_CAPS,
@@ -55,12 +58,7 @@ static UINT indicators[] =
 
 CMainFrame::CMainFrame()
 {
-	// TODO: add member initialization code here
 	theApp.m_nAppLook = theApp.GetInt(_T("ApplicationLook"), ID_VIEW_APPLOOK_VS_2008);
-}
-
-CMainFrame::~CMainFrame()
-{
 }
 
 int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
@@ -104,7 +102,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		TRACE0("Failed to create status bar\n");
 		return -1;      // fail to create
 	}
-	m_wndStatusBar.SetIndicators(indicators, sizeof(indicators)/sizeof(UINT));
+	m_wndStatusBar.SetIndicators(indicators.data(), sizeof(indicators) / sizeof(UINT));
 
 	// TODO: Delete these five lines if you don't want the toolbar and menubar to be dockable
 	m_wndMenuBar.EnableDocking(CBRS_ALIGN_ANY);

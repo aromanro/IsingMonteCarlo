@@ -10,14 +10,13 @@ class CChartsPropertyPage : public CMFCPropertyPage
 
 public:
 	CChartsPropertyPage();
-	~CChartsPropertyPage() override;
 
 // Dialog Data
 #ifdef AFX_DESIGN_TIME
 	enum { IDD = IDD_CHARTS_PROPPAGE };
 #endif
 
-protected:
+private:
 	void DoDataExchange(CDataExchange* pDX) override;    // DDX/DDV support
 
 	DECLARE_MESSAGE_MAP()

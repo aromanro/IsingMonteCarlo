@@ -10,7 +10,6 @@ class CDisplayPropertyPage : public CMFCPropertyPage
 
 public:
 	CDisplayPropertyPage();
-	~CDisplayPropertyPage() override;
 
 // Dialog Data
 #ifdef AFX_DESIGN_TIME

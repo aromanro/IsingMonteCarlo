@@ -98,7 +98,7 @@ void MemoryBitmap::SetMatrix(const MonteCarlo::SpinMatrix& matrix, unsigned int 
 }
 
 
-void MemoryBitmap::Draw(CDC* pDC)
+void MemoryBitmap::Draw(CDC* pDC) const
 {
 	BITMAPINFO bmi;
 	ZeroMemory(&bmi, sizeof(BITMAPINFOHEADER));
@@ -121,7 +121,7 @@ void MemoryBitmap::Draw(CDC* pDC)
 	dcMemory.SelectObject(pOldBitmap);
 }
 
-void MemoryBitmap::Draw(CDC* pDC, CRect& rect, int origWidth, int origHeight)
+void MemoryBitmap::Draw(CDC* pDC, CRect& rect, int origWidth, int origHeight) const
 {
 	BITMAPINFO bmi;
 	ZeroMemory(&bmi, sizeof(BITMAPINFOHEADER));

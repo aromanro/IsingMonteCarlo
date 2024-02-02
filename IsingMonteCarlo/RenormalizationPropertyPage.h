@@ -11,7 +11,6 @@ class CRenormalizationPropertyPage : public CMFCPropertyPage
 
 public:
 	CRenormalizationPropertyPage();
-	~CRenormalizationPropertyPage() override;
 
 // Dialog Data
 #ifdef AFX_DESIGN_TIME

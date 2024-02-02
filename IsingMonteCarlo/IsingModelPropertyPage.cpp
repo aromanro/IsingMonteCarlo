@@ -19,10 +19,6 @@ CIsingModelPropertyPage::CIsingModelPropertyPage()
 	m_B = theApp.options.B;
 }
 
-CIsingModelPropertyPage::~CIsingModelPropertyPage()
-{
-}
-
 void CIsingModelPropertyPage::DoDataExchange(CDataExchange* pDX)
 {
 	CMFCPropertyPage::DoDataExchange(pDX);

@@ -27,10 +27,6 @@ CSimulationPropertyPage::CSimulationPropertyPage()
 	m_stepsBetweenCollect = theApp.options.stepsBetweenCollect;
 }
 
-CSimulationPropertyPage::~CSimulationPropertyPage()
-{
-}
-
 void CSimulationPropertyPage::DoDataExchange(CDataExchange* pDX)
 {
 	CMFCPropertyPage::DoDataExchange(pDX);

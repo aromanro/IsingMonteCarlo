@@ -11,7 +11,7 @@
 namespace MonteCarlo {
 
 	MonteCarloThread::MonteCarloThread(unsigned int rows, unsigned int columns)
-		: spins(rows, columns), doc(nullptr), Terminate(false), opt(theApp.options), needsData(false), setRenormalizationValues(0)
+		: spins(rows, columns), doc(nullptr), opt(theApp.options), needsData(false), Terminate(false), setRenormalizationValues(0)
 	{
 		spins.Init(opt);
 	}

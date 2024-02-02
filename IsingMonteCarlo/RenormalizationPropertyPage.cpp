@@ -25,10 +25,6 @@ CRenormalizationPropertyPage::CRenormalizationPropertyPage()
 	m_renormType = (int)theApp.options.renormalizationType;
 }
 
-CRenormalizationPropertyPage::~CRenormalizationPropertyPage()
-{
-}
-
 void CRenormalizationPropertyPage::DoDataExchange(CDataExchange* pDX)
 {
 	CMFCPropertyPage::DoDataExchange(pDX);

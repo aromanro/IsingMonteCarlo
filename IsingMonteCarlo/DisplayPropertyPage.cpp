@@ -20,9 +20,6 @@ CDisplayPropertyPage::CDisplayPropertyPage()
 	m_timerInterval = theApp.options.timerInterval;
 }
 
-CDisplayPropertyPage::~CDisplayPropertyPage()
-{
-}
 
 void CDisplayPropertyPage::DoDataExchange(CDataExchange* pDX)
 {

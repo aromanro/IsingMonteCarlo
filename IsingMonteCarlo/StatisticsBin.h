@@ -6,8 +6,6 @@ namespace Statistics
 	class StatisticsBin
 	{
 	public:
-		StatisticsBin() : sum(0), sum2(0), count(0) {}
-
 		void Reset()
 		{
 			count = 0;
@@ -23,9 +21,9 @@ namespace Statistics
 			++count;
 		}
 
-		double GetAverage() const { return sum / count; }
+		double GetAverage() const { return sum / static_cast<double>(count); }
 
-		double GetAverage2() const { return sum2 / count; }
+		double GetAverage2() const { return sum2 / static_cast<double>(count); }
 
 		double GetVariance() const 
 		{ 
@@ -41,16 +39,16 @@ namespace Statistics
 
 		double GetNonParametricStandardDeviation() const
 		{
-			return count * GetStandardDeviation() / (count - 1.);
+			return static_cast<double>(count) * GetStandardDeviation() / (static_cast<double>(count) - 1.);
 		}
 
 
 		long long int GetSamplesNumber() const { return count; }
 
-	protected:
-		double sum;
-		double sum2;
-		long long int count;
+	private:
+		double sum = 0;
+		double sum2 = 0;
+		long long int count = 0;
 	};
 
 }

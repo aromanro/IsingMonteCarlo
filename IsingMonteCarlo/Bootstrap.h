@@ -10,7 +10,7 @@ namespace Statistics
         public StatisticsBinCollection<N>
     {
     public:
-        Bootstrap(long long SampleSize) : sampleSize(SampleSize), count(0), binExcl(sampleSize / N) {}
+        explicit Bootstrap(long long SampleSize) : sampleSize(SampleSize), count(0), binExcl(sampleSize / N) {}
 
         void Reset()
         {
