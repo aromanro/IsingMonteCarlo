@@ -65,7 +65,7 @@ BOOL CIsingMonteCarloApp::InitInstance()
 	CWinAppEx::InitInstance();
 
 	Gdiplus::GdiplusStartupInput gdiplusStartupInput;
-	Gdiplus::GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, NULL);
+	Gdiplus::GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, nullptr);
 
 	EnableTaskbarInteraction(FALSE);
 

@@ -64,7 +64,7 @@ private:
 	void DisplayRenormalization(CDC* pDC, bool inc = false);
 
 	afx_msg BOOL OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message);
-	void OnPrepareDC(CDC* pDC, CPrintInfo* pInfo = NULL) override;
+	void OnPrepareDC(CDC* pDC, CPrintInfo* pInfo = nullptr) override;
 };
 
 #ifndef _DEBUG  // debug version in IsingMonteCarloView.cpp

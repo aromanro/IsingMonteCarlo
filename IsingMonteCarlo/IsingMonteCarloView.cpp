@@ -99,7 +99,7 @@ void CIsingMonteCarloView::OnDraw(CDC* pDC)
 		
 		rect.left += rect.Width() / 2 - 150;
 		rect.right = rect.left + 300;
-		pDC->ExtTextOut(rect.left + rect.Width() / 2, rect.top, ETO_CLIPPED | ETO_OPAQUE, rect, str, NULL);
+		pDC->ExtTextOut(rect.left + rect.Width() / 2, rect.top, ETO_CLIPPED | ETO_OPAQUE, rect, str, nullptr);
 
 		pDC->SelectObject(oldFont);
 
@@ -248,7 +248,7 @@ void CIsingMonteCarloView::OnDestroy()
 
 void CIsingMonteCarloView::StartTimer()
 {
-	if (!timer) timer = SetTimer(1, theApp.options.timerInterval, NULL);
+	if (!timer) timer = SetTimer(1, theApp.options.timerInterval, nullptr);
 
 	const CIsingMonteCarloDoc* pDoc = GetDocument();
 	if (pDoc && pDoc->computing) BeginWaitCursor();
@@ -273,7 +273,7 @@ void CIsingMonteCarloView::ResetTimer()
 	if (!timer) return;
 
 	KillTimer(timer);
-	timer = SetTimer(1, theApp.options.timerInterval, NULL);
+	timer = SetTimer(1, theApp.options.timerInterval, nullptr);
 }
 
 void CIsingMonteCarloView::DisplayRenormalization(CDC* pDC, bool inc)
@@ -339,13 +339,13 @@ void CIsingMonteCarloView::DisplayRenormalizationForSpins(CDC* pDC, bool inc, CR
 	textRect.top = rect.top - 20;
 	textRect.bottom = textRect.top + 16;
 
-	pDC->ExtTextOut(textRect.left + textRect.Width()/2, textRect.top, ETO_CLIPPED | ETO_OPAQUE, textRect, str, NULL);
+	pDC->ExtTextOut(textRect.left + textRect.Width()/2, textRect.top, ETO_CLIPPED | ETO_OPAQUE, textRect, str, nullptr);
 	
 	textRect.top = rect.bottom + 4;
 	textRect.bottom = textRect.top + 16;
 
 	str.Format(L"L = %d", static_cast<int>(renormPixels / spinSize * pow(2, dispSpinsRenorm.GetRenormalizationsNumber())));
-	pDC->ExtTextOut(textRect.left + textRect.Width() / 2, textRect.top, ETO_CLIPPED | ETO_OPAQUE, textRect, str, NULL);
+	pDC->ExtTextOut(textRect.left + textRect.Width() / 2, textRect.top, ETO_CLIPPED | ETO_OPAQUE, textRect, str, nullptr);
 
 	pDC->SelectObject(oldFont);
 
